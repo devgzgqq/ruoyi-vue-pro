@@ -32,4 +32,7 @@ public class UserExportReqVO {
     @Schema(description = "部门编号，同时筛选子部门", example = "1024")
     private Long deptId;
 
+    @Schema(description = "岗位编号，模糊匹配", example = "24")
+    private String postId;
+
 }

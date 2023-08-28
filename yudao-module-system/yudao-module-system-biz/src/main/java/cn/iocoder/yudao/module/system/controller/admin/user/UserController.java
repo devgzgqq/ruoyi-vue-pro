@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.val;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -111,11 +112,16 @@ public class UserController {
 
     @GetMapping("/list-all-simple")
     @Operation(summary = "获取用户精简信息列表", description = "只包含被开启的用户，主要用于前端的下拉选项")
-    public CommonResult<List<UserSimpleRespVO>> getSimpleUserList() {
+    public CommonResult<List<UserSimpleRespVO>> getSimpleUserList(@Validated UserExportReqVO reqVO) {
         // 获用户列表，只要开启状态的
-        List<AdminUserDO> list = userService.getUserListByStatus(CommonStatusEnum.ENABLE.getStatus());
+//        List<AdminUserDO> list = userService.getUserListByStatus(CommonStatusEnum.ENABLE.getStatus());
+        // 判断是状态是否为空，如果为空，设置默认值
+        if (reqVO.getStatus() == null) {
+            reqVO.setStatus(CommonStatusEnum.ENABLE.getStatus());
+        }
+        List<AdminUserDO> userList = userService.getUserList(reqVO);
         // 排序后，返回给前端
-        return success(UserConvert.INSTANCE.convertList04(list));
+        return success(UserConvert.INSTANCE.convertList04(userList));
     }
 
     @GetMapping("/get")

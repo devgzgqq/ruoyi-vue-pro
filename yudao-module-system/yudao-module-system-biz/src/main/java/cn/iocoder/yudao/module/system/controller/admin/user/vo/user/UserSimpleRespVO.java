@@ -16,5 +16,4 @@ public class UserSimpleRespVO {
 
     @Schema(description = "用户昵称", requiredMode = Schema.RequiredMode.REQUIRED, example = "芋道")
     private String nickname;
-
 }

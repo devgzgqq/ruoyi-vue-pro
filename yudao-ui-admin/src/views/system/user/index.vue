@@ -307,6 +307,7 @@ export default {
         mobile: undefined,
         status: undefined,
         deptId: undefined,
+        postId: undefined,
         createTime: []
       },
       // 列信息
