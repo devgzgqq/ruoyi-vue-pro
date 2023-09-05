@@ -1,7 +1,9 @@
 package cn.iocoder.yudao.module.training.vo.store;
 
-import lombok.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Schema(description = "管理后台 - 门店创建 Request VO")
 @Data
