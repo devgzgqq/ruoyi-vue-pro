@@ -180,7 +180,7 @@ justauth:
       ignore-check-redirect-uri: true
     WECHAT_ENTERPRISE: # 企业微信
       client-id: wwd411c69a39ad2e54
-      client-secret: 1wTb7hYxnpT2TUbIeHGXGo7T0odav1ic10mLdyyATOw
+      client-secret: 1bf1257aba459b5f4043923925f1817c
       agent-id: 1000004
       ignore-check-redirect-uri: true
   cache:

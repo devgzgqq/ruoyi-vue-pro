@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "path": "sql/mysql"
+    },
+    {
+      "path": "yudao-ui-admin"
+    },
+    {
+      "path": "../yudao-ui-admin-vue3"
+    }
+  ],
+  "settings": {
+    "nuxt.isNuxtApp": false
+  }
+}

@@ -86,7 +86,7 @@ ElementUI.Dialog.props.closeOnClickModal.default = false
  */
 
 Vue.use(Element, {
-  size: localStorage.getItem("size") || "small", // set element-ui default size
+  size: localStorage.getItem("size") || "medium", // set element-ui default size
 });
 
 Vue.config.productionTip = false

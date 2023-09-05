@@ -174,7 +174,7 @@ wx:
       http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
   miniapp: # 小程序配置（必填），参见 https://github.com/Wechat-Group/WxJava/blob/develop/spring-boot-starters/wx-java-miniapp-spring-boot-starter/README.md 文档
     appid: wx662735fe786caa34
-    secret: 6dba6f3c383b98ee43e8921d089f95eb
+    secret: 1bf1257aba459b5f4043923925f1817c
     config-storage:
       type: RedisTemplate # 采用 RedisTemplate 操作 Redis，会自动从 Spring 中获取
       key-prefix: wa # Redis Key 的前缀
