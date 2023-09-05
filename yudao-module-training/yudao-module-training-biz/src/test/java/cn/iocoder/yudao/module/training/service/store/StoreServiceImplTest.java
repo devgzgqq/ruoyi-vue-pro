@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 
 import cn.iocoder.yudao.framework.test.core.ut.BaseDbUnitTest;
 
-import cn.iocoder.yudao.module.training.controller.app.store.vo.*;
+import cn.iocoder.yudao.module.training.vo.store.*;
 import cn.iocoder.yudao.module.training.dal.dataobject.store.StoreDO;
 import cn.iocoder.yudao.module.training.dal.mysql.store.StoreMapper;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
@@ -45,7 +45,7 @@ public class StoreServiceImplTest extends BaseDbUnitTest {
     @Test
     public void testCreateStore_success() {
         // 准备参数
-        AppStoreCreateReqVO reqVO = randomPojo(AppStoreCreateReqVO.class);
+        StoreCreateReqVO reqVO = randomPojo(StoreCreateReqVO.class);
 
         // 调用
         Long storeId = storeService.createStore(reqVO);
@@ -62,7 +62,7 @@ public class StoreServiceImplTest extends BaseDbUnitTest {
         StoreDO dbStore = randomPojo(StoreDO.class);
         storeMapper.insert(dbStore);// @Sql: 先插入出一条存在的数据
         // 准备参数
-        AppStoreUpdateReqVO reqVO = randomPojo(AppStoreUpdateReqVO.class, o -> {
+        StoreUpdateReqVO reqVO = randomPojo(StoreUpdateReqVO.class, o -> {
             o.setId(dbStore.getId()); // 设置更新的 ID
         });
 
@@ -76,7 +76,7 @@ public class StoreServiceImplTest extends BaseDbUnitTest {
     @Test
     public void testUpdateStore_notExists() {
         // 准备参数
-        AppStoreUpdateReqVO reqVO = randomPojo(AppStoreUpdateReqVO.class);
+        StoreUpdateReqVO reqVO = randomPojo(StoreUpdateReqVO.class);
 
         // 调用, 并断言异常
         assertServiceException(() -> storeService.updateStore(reqVO), STORE_NOT_EXISTS);
@@ -140,7 +140,7 @@ public class StoreServiceImplTest extends BaseDbUnitTest {
        // 测试 createTime 不匹配
        storeMapper.insert(cloneIgnoreId(dbStore, o -> o.setCreateTime(null)));
        // 准备参数
-       AppStorePageReqVO reqVO = new AppStorePageReqVO();
+       StorePageReqVO reqVO = new StorePageReqVO();
        reqVO.setName(null);
        reqVO.setMobile(null);
        reqVO.setAddress(null);
@@ -194,7 +194,7 @@ public class StoreServiceImplTest extends BaseDbUnitTest {
        // 测试 createTime 不匹配
        storeMapper.insert(cloneIgnoreId(dbStore, o -> o.setCreateTime(null)));
        // 准备参数
-       AppStoreExportReqVO reqVO = new AppStoreExportReqVO();
+       StoreExportReqVO reqVO = new StoreExportReqVO();
        reqVO.setName(null);
        reqVO.setMobile(null);
        reqVO.setAddress(null);
