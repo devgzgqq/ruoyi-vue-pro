@@ -81,6 +81,10 @@ export const DICT_TYPE = {
   PROMOTION_COUPON_TAKE_TYPE: 'promotion_coupon_take_type', // 优惠劵的领取方式
   PROMOTION_ACTIVITY_STATUS: 'promotion_activity_status', // 优惠活动的状态
   PROMOTION_CONDITION_TYPE: 'promotion_condition_type', // 营销的条件类型枚举
+
+  // ========== TRAINING - COACH 模块 ==========
+  TRAINING_COACH_LEVEL: 'training_coach_level', // 教练级别
+  TRAINING_COACH_TAGS: 'training_coach_tags', // 教练标签
 }
 
 /**

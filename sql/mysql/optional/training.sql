@@ -78,7 +78,35 @@ CREATE TABLE `training_coach`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '教练表';
 
 -- ----------------------------
--- Records of train_store
+-- Records of training_coach
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for training_student
+-- ----------------------------
+DROP TABLE IF EXISTS `training_student`;
+CREATE TABLE `training_student`  (
+   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+   `store_id` bigint DEFAULT NULL COMMENT '门店ID',
+   `coach_id` bigint DEFAULT NULL COMMENT '教练ID',
+   `member_id` bigint DEFAULT NULL COMMENT '会员ID',
+   `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '姓名',
+   `avatar` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '头像',
+   `status` bit(1) NOT NULL DEFAULT b'1' COMMENT '状态',
+   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
+   `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '创建者',
+   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+   `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '更新者',
+   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+   `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+   `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
+   PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '学员表';
+
+-- ----------------------------
+-- Records of training_student
 -- ----------------------------
 BEGIN;
 COMMIT;

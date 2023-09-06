@@ -3,7 +3,7 @@
     <doc-alert title="代码生成" url="https://doc.iocoder.cn/new-feature/" />
     <doc-alert title="单元测试" url="https://doc.iocoder.cn/unit-test/" />
     <!-- 操作工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch" label-position="left">
       <el-form-item label="表名称" prop="tableName">
         <el-input v-model="queryParams.tableName" placeholder="请输入表名称" clearable
                   @keyup.enter.native="handleQuery"/>
@@ -25,7 +25,7 @@
     <!-- 操作工作栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="info" plain icon="el-icon-upload" size="mini" @click="openImportTable"
+        <el-button type="primary" plain icon="el-icon-upload" size="mini" @click="openImportTable"
                    v-hasPermi="['infra:codegen:create']">导入</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -34,9 +34,9 @@
     <!-- 列表 -->
     <el-table v-loading="loading" :data="tableList">
       <el-table-column label="数据源" align="center" :formatter="dataSourceConfigNameFormat"/>
-      <el-table-column label="表名称" align="center" prop="tableName" width="200"/>
-      <el-table-column label="表描述" align="center" prop="tableComment" :show-overflow-tooltip="true" width="120"/>
-      <el-table-column label="实体" align="center" prop="className" width="200"/>
+      <el-table-column label="表名称" align="center" prop="tableName"/>
+      <el-table-column label="表描述" align="center" prop="tableComment" :show-overflow-tooltip="true"/>
+      <el-table-column label="实体" align="center" prop="className"/>
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
