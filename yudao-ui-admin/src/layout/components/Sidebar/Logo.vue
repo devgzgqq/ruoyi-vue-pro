@@ -55,15 +55,17 @@ export default {
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 55px;
+  line-height: 55px;
   background: #2b2f3a;
-  text-align: center;
+  //text-align: center;
   overflow: hidden;
+  border-bottom: 1px solid #e7e7e7;
 
-  & .sidebar-logo-link {
+  &.sidebar-logo-link {
     height: 100%;
     width: 100%;
+    @apply gw-flex gw-items-center gw-justify-center;
 
     & .sidebar-logo {
       width: 32px;

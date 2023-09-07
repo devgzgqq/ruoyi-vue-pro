@@ -46,7 +46,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" fixed="right" class-name="small-padding fixed-width">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleAudit(scope.row)"
+          <el-button size="mini" type="text" @click="handleAudit(scope.row)"
                      v-hasPermi="['bpm:task:query']">详情</el-button>
         </template>
       </el-table-column>

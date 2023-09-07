@@ -25,7 +25,7 @@
     <!-- 操作工作栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-upload" size="mini" @click="openImportTable"
+        <el-button type="primary" icon="el-icon-upload" size="mini" @click="openImportTable"
                    v-hasPermi="['infra:codegen:create']">导入</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>

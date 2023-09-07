@@ -25,7 +25,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
+        <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd"
                    v-hasPermi="['infra:file-config:create']">新增</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -53,12 +53,12 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="240">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
+          <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['infra:file-config:update']">修改</el-button>
           <el-button size="mini" type="text" icon="el-icon-attract" @click="handleMaster(scope.row)"
                      :disabled="scope.row.master" v-hasPermi="['infra:file-config:update']">主配置</el-button>
           <el-button size="mini" type="text" icon="el-icon-share" @click="handleTest(scope.row)">测试</el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini"type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['infra:file-config:delete']">删除</el-button>
         </template>
       </el-table-column>

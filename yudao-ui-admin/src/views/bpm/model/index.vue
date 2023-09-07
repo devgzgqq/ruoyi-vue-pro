@@ -26,7 +26,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
+        <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd"
                    v-hasPermi="['bpm:model:create']">新建流程</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -71,7 +71,7 @@
         <el-table-column label="流程版本" align="center" prop="processDefinition.version" width="80">
           <template v-slot="scope">
             <el-tag size="medium" v-if="scope.row.processDefinition">v{{ scope.row.processDefinition.version }}</el-tag>
-            <el-tag size="medium" type="warning" v-else>未部署</el-tag>
+            <el-tag size="medium" plain v-else>未部署</el-tag>
           </template>
         </el-table-column>
         <el-table-column label="激活状态" align="center" prop="processDefinition.version" width="80">
@@ -88,7 +88,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" width="450" fixed="right">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
+          <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['bpm:model:update']">修改流程</el-button>
           <el-button size="mini" type="text" icon="el-icon-setting" @click="handleDesign(scope.row)"
                      v-hasPermi="['bpm:model:update']">设计流程</el-button>
@@ -98,7 +98,7 @@
                      v-hasPermi="['bpm:model:deploy']">发布流程</el-button>
           <el-button size="mini" type="text" icon="el-icon-ice-cream-round" @click="handleDefinitionList(scope.row)"
                      v-hasPermi="['bpm:process-definition:query']">流程定义</el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini"type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['bpm:model:delete']">删除</el-button>
         </template>
       </el-table-column>

@@ -31,13 +31,13 @@
       <el-table-column label="流程版本" align="center" prop="processDefinition.version" width="80">
         <template v-slot="scope">
           <el-tag size="medium" v-if="scope.row">v{{ scope.row.version }}</el-tag>
-          <el-tag size="medium" type="warning" v-else>未部署</el-tag>
+          <el-tag size="medium" plain v-else>未部署</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="状态" align="center" prop="version" width="80">
         <template v-slot="scope">
             <el-tag type="success" v-if="scope.row.suspensionState === 1">激活</el-tag>
-            <el-tag type="warning" v-if="scope.row.suspensionState === 2">挂起</el-tag>
+            <el-tag plain v-if="scope.row.suspensionState === 2">挂起</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="部署时间" align="center" prop="deploymentTime" width="180">

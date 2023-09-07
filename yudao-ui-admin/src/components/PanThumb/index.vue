@@ -114,7 +114,7 @@ export default {
   border-radius: 50%;
   color: #fff;
   font-style: normal;
-  font-weight: 700;
+  font-weight: normal;
   text-transform: uppercase;
   font-size: 9px;
   letter-spacing: 1px;

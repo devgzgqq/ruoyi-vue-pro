@@ -85,6 +85,11 @@
   }
 }
 
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+}
+
 .el-table {
   .el-table__header-wrapper, .el-table__fixed-header-wrapper {
     th {
@@ -163,6 +168,7 @@
 }
 
 .list-group-striped > .list-group-item {
+  @apply gw-flex gw-items-center;
   border-left: 0;
   border-right: 0;
   border-radius: 0;

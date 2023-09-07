@@ -31,7 +31,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-plus" size="mini"
+        <el-button type="primary" icon="el-icon-plus" size="mini"
                    v-hasPermi="['bpm:oa-leave:create']" @click="handleAdd">发起请假</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -68,11 +68,11 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleCancel(scope.row)"
+          <el-button size="mini"type="text" @click="handleCancel(scope.row)"
                      v-hasPermi="['bpm:oa-leave:create']" v-if="scope.row.result === 1">取消请假</el-button>
           <el-button size="mini" type="text" icon="el-icon-view" @click="handleDetail(scope.row)"
                      v-hasPermi="['bpm:oa-leave:query']">详情</el-button>
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleProcessDetail(scope.row)">审批进度</el-button>
+          <el-button size="mini" type="text" @click="handleProcessDetail(scope.row)">审批进度</el-button>
         </template>
       </el-table-column>
     </el-table>

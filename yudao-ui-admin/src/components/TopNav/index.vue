@@ -6,14 +6,14 @@
   >
     <template v-for="(item, index) in topMenus">
       <el-menu-item :style="{'--theme': theme}" :index="item.path" :key="index" v-if="index < visibleNumber">
-        <svg-icon :icon-class="item.meta.icon"/>
+        <svg-icon v-if="item.meta.icon" :icon-class="item.meta.icon" class="gw-mr-2"/>
         {{ item.meta.title }}
       </el-menu-item>
     </template>
 
     <!-- 顶部菜单超出数量折叠 -->
     <el-submenu :style="{'--theme': theme}" index="more" v-if="topMenus.length > visibleNumber">
-      <template slot="title">更多菜单</template>
+      <template slot="title">更多</template>
       <template v-for="(item, index) in topMenus">
         <el-menu-item
           :index="item.path"
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       // 顶部栏初始数
-      visibleNumber: 5,
+      visibleNumber: 8,
       // 当前激活菜单的 index
       currentIndex: undefined
     };
@@ -169,10 +169,11 @@ export default {
   color: #999093 !important;
   padding: 0 5px !important;
   margin: 0 10px !important;
+  @apply gw-flex gw-items-center;
 }
 
 .topmenu-container.el-menu--horizontal > .el-menu-item.is-active, .el-menu--horizontal > .el-submenu.is-active .el-submenu__title {
-  border-bottom: 2px solid #{'var(--theme)'} !important;
+  //border-bottom: 2px solid #{'var(--theme)'} !important;
   color: #303133;
 }
 
@@ -184,5 +185,9 @@ export default {
   color: #999093 !important;
   padding: 0 5px !important;
   margin: 0 10px !important;
+}
+
+.el-menu--horizontal .el-menu .el-menu-item, .el-menu--horizontal .el-menu .el-submenu__title {
+  @apply gw-flex gw-items-center;
 }
 </style>

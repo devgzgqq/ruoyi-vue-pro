@@ -119,7 +119,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleSend(scope.row)"
+          <el-button size="mini" type="text" @click="handleSend(scope.row)"
                      v-hasPermi="['mp:message:send']">消息
           </el-button>
         </template>

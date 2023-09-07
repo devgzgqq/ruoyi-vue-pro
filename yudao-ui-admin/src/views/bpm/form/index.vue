@@ -16,7 +16,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
+        <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd"
                    v-hasPermi="['bpm:form:create']">新增</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -39,11 +39,11 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleDetail(scope.row)"
+          <el-button size="mini" type="text" @click="handleDetail(scope.row)"
                      v-hasPermi="['bpm:form:query']">详情</el-button>
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
+          <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['bpm:form:update']">修改</el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini"type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['bpm:form:delete']">删除</el-button>
         </template>
       </el-table-column>

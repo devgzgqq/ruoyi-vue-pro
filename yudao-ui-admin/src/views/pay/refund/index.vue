@@ -49,7 +49,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="warning" plain icon="el-icon-download" size="mini" @click="handleExport"
+        <el-button plain icon="el-icon-download" size="mini" @click="handleExport"
                    v-hasPermi="['pay:refund:export']">导出
         </el-button>
       </el-col>
@@ -80,7 +80,7 @@
             <el-tag size="mini">商户</el-tag> {{scope.row.merchantRefundId}}
           </p>
           <p class="order-font">
-            <el-tag size="mini" type="warning">退款</el-tag> {{scope.row.no}}
+            <el-tag size="mini" plain>退款</el-tag> {{scope.row.no}}
           </p>
           <p class="order-font" v-if="scope.row.channelRefundNo">
             <el-tag size="mini" type="success">渠道</el-tag> {{scope.row.channelRefundNo}}

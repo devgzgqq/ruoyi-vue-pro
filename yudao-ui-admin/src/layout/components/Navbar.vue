@@ -7,24 +7,24 @@
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
-        <search id="header-search" class="right-menu-item" />
+<!--        <search id="header-search" class="right-menu-item" />-->
 
         <!-- 站内信 -->
         <notify-message class="right-menu-item hover-effect" />
 
-        <el-tooltip content="源码地址" effect="dark" placement="bottom">
-          <ruo-yi-git id="ruoyi-git" class="right-menu-item hover-effect" />
-        </el-tooltip>
+<!--        <el-tooltip content="源码地址" effect="dark" placement="bottom">-->
+<!--          <ruo-yi-git id="ruoyi-git" class="right-menu-item hover-effect" />-->
+<!--        </el-tooltip>-->
 
-        <el-tooltip content="文档地址" effect="dark" placement="bottom">
-          <ruo-yi-doc id="ruoyi-doc" class="right-menu-item hover-effect" />
-        </el-tooltip>
+<!--        <el-tooltip content="文档地址" effect="dark" placement="bottom">-->
+<!--          <ruo-yi-doc id="ruoyi-doc" class="right-menu-item hover-effect" />-->
+<!--        </el-tooltip>-->
 
-        <screenfull id="screenfull" class="right-menu-item hover-effect" />
+<!--        <screenfull id="screenfull" class="right-menu-item hover-effect" />-->
 
-        <el-tooltip content="布局大小" effect="dark" placement="bottom">
-          <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
+<!--        <el-tooltip content="布局大小" effect="dark" placement="bottom">-->
+<!--          <size-select id="size-select" class="right-menu-item hover-effect" />-->
+<!--        </el-tooltip>-->
 
       </template>
 
@@ -116,11 +116,17 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: 55px;
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  //box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  border-bottom: 1px solid #e7e7e7;
+
+  .el-menu.el-menu--horizontal {
+    background: transparent;
+    border-bottom: none;
+  }
 
   .hamburger-container {
     line-height: 46px;

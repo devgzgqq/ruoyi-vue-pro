@@ -69,7 +69,7 @@
 
       <el-divider/>
 
-      <el-button size="small" type="primary" plain icon="el-icon-document-add" @click="saveSetting">保存配置</el-button>
+      <el-button size="small" type="primary" icon="el-icon-document-add" @click="saveSetting">保存配置</el-button>
       <el-button size="small" plain icon="el-icon-refresh" @click="resetSetting">重置配置</el-button>
     </div>
   </div>
@@ -224,7 +224,7 @@ export default {
         padding-top: 15px;
         padding-left: 24px;
         color: #1890ff;
-        font-weight: 700;
+        font-weight: normal;
         font-size: 14px;
       }
     }

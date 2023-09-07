@@ -98,8 +98,7 @@
     </div>
 
     <!-- 图形验证码 -->
-    <Verify ref="verify" :captcha-type="'blockPuzzle'" :img-size="{width:'400px',height:'200px'}"
-            @success="handleLogin" />
+    <Verify ref="verify" :captcha-type="'blockPuzzle'" @success="handleLogin" />
 
     <!-- footer -->
     <div class="footer">

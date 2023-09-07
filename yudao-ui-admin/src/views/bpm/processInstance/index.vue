@@ -41,7 +41,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
+        <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd"
                    v-hasPermi="['bpm:process-instance:query']">发起流程</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -87,7 +87,7 @@
         <template v-slot="scope">
           <el-button type="text" size="small" icon="el-icon-delete" v-if="scope.row.result === 1"
                      v-hasPermi="['bpm:process-instance:cancel']" @click="handleCancel(scope.row)">取消</el-button>
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleDetail(scope.row)"
+          <el-button size="mini" type="text" @click="handleDetail(scope.row)"
                      v-hasPermi="['bpm:process-instance:query']">详情</el-button>
         </template>
       </el-table-column>

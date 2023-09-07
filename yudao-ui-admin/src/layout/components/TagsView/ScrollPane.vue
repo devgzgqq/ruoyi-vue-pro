@@ -86,7 +86,9 @@ export default {
       bottom: 0;
     }
   :deep(.el-scrollbar__wrap) {
-      height: 49px;
+      height: 36px;
+      display: flex;
+      align-items: center;
     }
 }
 </style>

@@ -1,10 +1,11 @@
 import Vue from 'vue'
 
 import Element from 'element-ui'
+import '@/assets/styles/main.css' // main css
 import './assets/styles/element-variables.scss'
-
 import '@/assets/styles/index.scss' // global css
 import '@/assets/styles/ruoyi.scss' // ruoyi css
+
 import App from './App'
 import store from './store'
 import router from './router'
@@ -86,7 +87,7 @@ ElementUI.Dialog.props.closeOnClickModal.default = false
  */
 
 Vue.use(Element, {
-  size: localStorage.getItem("size") || "medium", // set element-ui default size
+  size: localStorage.getItem("size") || "small", // set element-ui default size
 });
 
 Vue.config.productionTip = false

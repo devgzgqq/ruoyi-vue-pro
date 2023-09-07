@@ -33,6 +33,7 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
+  padding: 24px;
 }
 
 .fixed-header + .app-main {
@@ -46,7 +47,7 @@ export default {
   }
 
   .fixed-header + .app-main {
-    padding-top: 84px;
+    padding-top: 115px;
   }
 }
 </style>

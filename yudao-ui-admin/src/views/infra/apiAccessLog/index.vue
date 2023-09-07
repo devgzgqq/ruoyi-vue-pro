@@ -37,7 +37,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="warning" plain icon="el-icon-download" size="mini" :loading="exportLoading" @click="handleExport"
+        <el-button plain icon="el-icon-download" size="mini" :loading="exportLoading" @click="handleExport"
                    v-hasPermi="['infra:api-access-log:export']">导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>

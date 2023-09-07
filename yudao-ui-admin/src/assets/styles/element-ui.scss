@@ -90,3 +90,13 @@
 .el-submenu__icon-arrow {
   display: none;
 }
+
+.el-form--label-left .el-form-item__label {
+  position: relative;
+}
+
+.el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before {
+  position: absolute;
+  left: -8px;
+  top: 2px;
+}

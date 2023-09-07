@@ -96,7 +96,7 @@ SOFTWARE.
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template v-slot="scope">
               <el-button type="text" icon="el-icon-download" size="small" plain @click="handleDownload(scope.row)">下载</el-button>
-              <el-button type="text" icon="el-icon-delete" size="small" plain @click="handleDelete(scope.row)"
+              <el-buttontype="text" size="small" plain @click="handleDelete(scope.row)"
                          v-hasPermi="['mp:material:delete']">删除</el-button>
             </template>
           </el-table-column>
@@ -157,7 +157,7 @@ SOFTWARE.
           <el-table-column label="操作" align="center" fixed="right" class-name="small-padding fixed-width">
             <template v-slot="scope">
               <el-button type="text" icon="el-icon-download" size="small" plain @click="handleDownload(scope.row)">下载</el-button>
-              <el-button type="text" icon="el-icon-delete" size="small" plain @click="handleDelete(scope.row)"
+              <el-buttontype="text" size="small" plain @click="handleDelete(scope.row)"
                          v-hasPermi="['mp:material:delete']">删除</el-button>
             </template>
           </el-table-column>

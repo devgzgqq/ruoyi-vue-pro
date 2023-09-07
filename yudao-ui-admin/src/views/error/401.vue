@@ -68,7 +68,7 @@ export default {
     }
     .text-jumbo {
       font-size: 60px;
-      font-weight: 700;
+      font-weight: normal;
       color: #484848;
     }
     .list-unstyled {

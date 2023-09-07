@@ -47,7 +47,7 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="warning" plain icon="el-icon-download" size="mini" @click="handleExport"
+        <el-button plain icon="el-icon-download" size="mini" @click="handleExport"
                    v-hasPermi="['pay:order:export']">导出
         </el-button>
       </el-col>
@@ -83,7 +83,7 @@
             商户</el-tag> {{scope.row.merchantOrderId}}
           </p>
           <p class="order-font" v-if="scope.row.no">
-            <el-tag size="mini" type="warning">支付</el-tag> {{scope.row.no}}
+            <el-tag size="mini" plain>支付</el-tag> {{scope.row.no}}
           </p>
           <p class="order-font" v-if="scope.row.channelOrderNo">
             <el-tag size="mini" type="success">渠道</el-tag> {{scope.row.channelOrderNo}}
@@ -130,7 +130,7 @@
           <el-tag size="small">{{ orderDetail.merchantOrderId }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item label="支付单号">
-          <el-tag type="warning" size="small" v-if="orderDetail.no">{{ orderDetail.no }}</el-tag>
+          <el-tag plain size="small" v-if="orderDetail.no">{{ orderDetail.no }}</el-tag>
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions :column="2" label-class-name="desc-label">
@@ -147,7 +147,7 @@
       </el-descriptions>
       <el-descriptions :column="2" label-class-name="desc-label">
         <el-descriptions-item label="手续费">
-          <el-tag type="warning" size="small">￥{{ (orderDetail.channelFeePrice / 100.0).toFixed(2) }}</el-tag>
+          <el-tag plain size="small">￥{{ (orderDetail.channelFeePrice / 100.0).toFixed(2) }}</el-tag>
         </el-descriptions-item>
         <el-descriptions-item label="手续费比例">{{ (orderDetail.channelFeeRate / 100.0).toFixed(2) }}%</el-descriptions-item>
       </el-descriptions>

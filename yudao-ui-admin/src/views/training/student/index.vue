@@ -2,12 +2,12 @@
   <div class="app-container">
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch" label-position="left">
       <el-form-item label="姓名" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入姓名" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="请选择状态" clearable size="small">
+        <el-select v-model="queryParams.status" placeholder="请选择状态">
           <el-option v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"
                        :key="dict.value" :label="dict.label" :value="dict.value"/>
         </el-select>
@@ -21,11 +21,11 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
+        <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd"
                    v-hasPermi="['training:student:create']">新增</el-button>
       </el-col>
       <el-col :span="1.5">
-        <el-button type="warning" plain icon="el-icon-download" size="mini" @click="handleExport" :loading="exportLoading"
+        <el-button plain icon="el-icon-download" size="mini" @click="handleExport" :loading="exportLoading"
                    v-hasPermi="['training:student:export']">导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -33,10 +33,10 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="门店ID" align="center" prop="storeId" />
-      <el-table-column label="教练ID" align="center" prop="coachId" />
-      <el-table-column label="会员ID" align="center" prop="memberId" />
+      <el-table-column label="编号" align="center" prop="id" width="80px" />
+      <el-table-column label="门店" align="center" prop="storeId" />
+      <el-table-column label="教练" align="center" prop="coachId" />
+      <el-table-column label="会员" align="center" prop="memberId" />
       <el-table-column label="姓名" align="center" prop="name" />
       <el-table-column label="头像" align="center" prop="avatar" />
       <el-table-column label="状态" align="center" prop="status">
@@ -52,9 +52,9 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
+          <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['training:student:update']">修改</el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini"type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['training:student:delete']">删除</el-button>
         </template>
       </el-table-column>
@@ -65,7 +65,10 @@
 
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="500px" v-dialogDrag append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
+        <el-form-item label="姓名" prop="name">
+          <el-input v-model="form.name" placeholder="请输入姓名" />
+        </el-form-item>
         <el-form-item label="门店ID" prop="storeId">
           <el-input v-model="form.storeId" placeholder="请输入门店ID" />
         </el-form-item>
@@ -74,9 +77,6 @@
         </el-form-item>
         <el-form-item label="会员ID" prop="memberId">
           <el-input v-model="form.memberId" placeholder="请输入会员ID" />
-        </el-form-item>
-        <el-form-item label="姓名" prop="name">
-          <el-input v-model="form.name" placeholder="请输入姓名" />
         </el-form-item>
         <el-form-item label="头像">
           <imageUpload v-model="form.avatar"/>

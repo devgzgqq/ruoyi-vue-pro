@@ -58,7 +58,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini"type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['promotion:coupon:delete']">回收</el-button>
         </template>
       </el-table-column>

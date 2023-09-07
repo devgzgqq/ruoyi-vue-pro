@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import './element-variables.scss';
 @import './mixin.scss';
 @import './transition.scss';
 @import './element-ui.scss';
@@ -14,7 +15,8 @@ body {
 }
 
 label {
-  font-weight: 700;
+  font-weight: normal;
+  color: $--color-text-primary;
 }
 
 html {
@@ -55,6 +57,10 @@ a:hover {
 
 div:focus {
   outline: none;
+}
+
+th {
+  font-weight: normal;
 }
 
 .fr {
@@ -121,7 +127,9 @@ aside {
 
 //main-container全局样式
 .app-container {
-  padding: 20px;
+  background-color: #FFFFFF;
+  padding: 24px;
+  border-radius: 6px;
 }
 
 .components-container {
