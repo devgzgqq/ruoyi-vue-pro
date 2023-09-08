@@ -91,8 +91,14 @@
   display: none;
 }
 
+.el-form--label-top .el-form-item__label {
+  padding: 0px;
+}
+
+.el-form--label-top .el-form-item__label,
 .el-form--label-left .el-form-item__label {
   position: relative;
+  color: #000000e6;
 }
 
 .el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before {
