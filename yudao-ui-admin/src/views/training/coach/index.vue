@@ -87,7 +87,7 @@
 
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="700px" v-dialogDrag append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="姓名" prop="name">
           <el-input v-model="form.name" placeholder="请输入教练名称" />
         </el-form-item>

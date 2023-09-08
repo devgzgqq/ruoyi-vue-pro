@@ -55,7 +55,7 @@
 
     <!-- 添加或修改部门对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="600px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-row>
           <el-col :span="24">
             <el-form-item label="上级部门" prop="parentId">

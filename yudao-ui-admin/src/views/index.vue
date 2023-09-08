@@ -25,7 +25,7 @@
       </el-col>
     </el-row>
 
-    
+
   </div>
 </template>
 
@@ -79,9 +79,9 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard-editor-container {
-  padding: 32px;
-  background-color: rgb(240, 242, 245);
+  padding: 24px;
   position: relative;
+  @apply gw-bg-white gw-rounded-lg;
 
   .chart-wrapper {
     background: #fff;

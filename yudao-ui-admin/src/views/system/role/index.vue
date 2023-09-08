@@ -4,22 +4,22 @@
     <doc-alert title="数据权限" url="https://doc.iocoder.cn/data-permission" />
     <el-form :model="queryParams" ref="queryForm" v-show="showSearch" :inline="true">
       <el-form-item label="角色名称" prop="name">
-        <el-input v-model="queryParams.name" placeholder="请输入角色名称" clearable size="small" style="width: 240px"
+        <el-input v-model="queryParams.name" placeholder="请输入角色名称" clearable size="mini" style="width: 240px"
                   @keyup.enter.native="handleQuery"/>
       </el-form-item>
       <el-form-item label="角色标识" prop="code">
-        <el-input v-model="queryParams.code" placeholder="请输入角色标识" clearable size="small" style="width: 240px"
+        <el-input v-model="queryParams.code" placeholder="请输入角色标识" clearable size="mini" style="width: 240px"
                   @keyup.enter.native="handleQuery"/>
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="角色状态" clearable size="small" style="width: 240px">
+        <el-select v-model="queryParams.status" placeholder="角色状态" clearable size="mini" style="width: 240px">
           <el-option v-for="dict in statusDictDatas" :key="parseInt(dict.value)" :label="dict.label" :value="parseInt(dict.value)"/>
         </el-select>
       </el-form-item>
-      <el-form-item label="创建时间" prop="createTime">
-        <el-date-picker v-model="queryParams.createTime" style="width: 240px" value-format="yyyy-MM-dd HH:mm:ss" type="daterange"
-                        range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['00:00:00', '23:59:59']" />
-      </el-form-item>
+<!--      <el-form-item label="创建时间" prop="createTime">-->
+<!--        <el-date-picker v-model="queryParams.createTime" style="width: 240px" value-format="yyyy-MM-dd HH:mm:ss" type="daterange"-->
+<!--                        range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['00:00:00', '23:59:59']" />-->
+<!--      </el-form-item>-->
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -77,7 +77,7 @@
 
     <!-- 添加或修改角色配置对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="角色名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入角色名称" />
         </el-form-item>

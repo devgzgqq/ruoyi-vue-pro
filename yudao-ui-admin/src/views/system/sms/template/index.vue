@@ -2,7 +2,7 @@
   <div class="app-container">
     <doc-alert title="短信配置" url="https://doc.iocoder.cn/sms/" />
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="150px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="短信类型" prop="type">
         <el-select v-model="queryParams.type" placeholder="请选择短信类型" clearable>
           <el-option v-for="dict in this.getDictDatas(DICT_TYPE.SYSTEM_SMS_TEMPLATE_TYPE)"

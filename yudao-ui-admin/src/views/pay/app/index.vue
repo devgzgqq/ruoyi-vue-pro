@@ -2,7 +2,7 @@
   <div class="app-container">
     <doc-alert title="支付功能开启" url="https://doc.iocoder.cn/pay/build/" />
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="应用名" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入应用名" clearable
                   @keyup.enter.native="handleQuery"/>

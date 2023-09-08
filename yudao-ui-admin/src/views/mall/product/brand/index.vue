@@ -2,7 +2,7 @@
   <div class="app-container">
     <doc-alert title="功能开启" url="https://doc.iocoder.cn/mall/build/" />
 
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="品牌名称" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入品牌名称" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>
@@ -69,7 +69,7 @@
 
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="品牌名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入品牌名称"/>
         </el-form-item>

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="岗位编码" prop="code">
         <el-input v-model="queryParams.code" placeholder="请输入岗位编码" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>
@@ -31,7 +31,7 @@
     </el-row>
 
     <el-table v-loading="loading" :data="postList">
-      <el-table-column label="岗位编号" align="center" prop="id" />
+      <el-table-column label="岗位编号" align="center" prop="id" width="80px"/>
       <el-table-column label="岗位编码" align="center" prop="code" />
       <el-table-column label="岗位名称" align="center" prop="name" />
       <el-table-column label="岗位排序" align="center" prop="sort" />
@@ -60,7 +60,7 @@
 
     <!-- 添加或修改岗位对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="岗位名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入岗位名称" />
         </el-form-item>

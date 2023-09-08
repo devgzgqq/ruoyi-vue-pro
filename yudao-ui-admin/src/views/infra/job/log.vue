@@ -4,7 +4,7 @@
     <doc-alert title="异步任务" url="https://doc.iocoder.cn/async-task/" />
     <doc-alert title="消息队列" url="https://doc.iocoder.cn/message-queue/" />
     <!-- 搜索栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="120px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="处理器的名字" prop="handlerName">
         <el-input v-model="queryParams.handlerName" placeholder="请输入处理器的名字" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>

@@ -3,7 +3,7 @@
     <doc-alert title="功能开启" url="https://doc.iocoder.cn/mall/build/" />
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="82px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="优惠券名称" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入优惠劵名" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>

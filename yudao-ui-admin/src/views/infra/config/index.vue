@@ -2,7 +2,7 @@
   <div class="app-container">
     <doc-alert title="配置中心" url="https://doc.iocoder.cn/config-center/" />
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="参数名称" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入参数名称" clearable style="width: 240px"
                   @keyup.enter.native="handleQuery"/>
@@ -75,7 +75,7 @@
 
     <!-- 添加或修改参数配置对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="参数分类" prop="category">
           <el-input v-model="form.category" placeholder="请输入参数分类" />
         </el-form-item>

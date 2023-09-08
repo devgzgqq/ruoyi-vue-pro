@@ -60,8 +60,8 @@
 
     <!-- 添加或修改菜单对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
-        <el-row>
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px" label-position="left">
+        <el-row :gutter="20">
           <el-col :span="24">
             <el-form-item label="上级菜单">
               <treeselect v-model="form.parentId" :options="menuOptions" :normalizer="normalizer" :show-count="true"

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <!-- 对话框(添加 / 修改) -->
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="开始时间" prop="startTime">
           <el-date-picker clearable size="small" v-model="form.startTime" type="date" value-format="timestamp" placeholder="选择开始时间" />
         </el-form-item>

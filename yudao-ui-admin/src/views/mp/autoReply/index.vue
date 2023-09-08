@@ -29,7 +29,7 @@ SOFTWARE.
     <doc-alert title="自动回复" url="https://doc.iocoder.cn/mp/auto-reply/" />
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="公众号" prop="accountId">
         <el-select v-model="queryParams.accountId" placeholder="请选择公众号">
           <el-option v-for="item in accounts" :key="parseInt(item.id)" :label="item.name" :value="parseInt(item.id)" />
@@ -121,7 +121,7 @@ SOFTWARE.
 
     <!-- 添加或修改自动回复的对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="消息类型" prop="requestMessageType" v-if="type === '2'">
           <el-select v-model="form.requestMessageType" placeholder="请选择">
             <el-option v-for="dict in this.getDictDatas(DICT_TYPE.MP_MESSAGE_TYPE)"

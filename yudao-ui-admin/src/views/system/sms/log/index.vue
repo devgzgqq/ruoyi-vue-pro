@@ -2,7 +2,7 @@
   <div class="app-container">
     <doc-alert title="短信配置" url="https://doc.iocoder.cn/sms/" />
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="100px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="手机号" prop="mobile">
         <el-input v-model="queryParams.mobile" placeholder="请输入手机号" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>

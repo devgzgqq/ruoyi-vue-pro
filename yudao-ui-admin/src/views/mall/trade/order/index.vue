@@ -5,7 +5,7 @@
     <!-- 搜索工作栏 -->
     <!-- TODO: inline 看看是不是需要; v-show= 那块逻辑还是要的 -->
     <el-row :gutter="20">
-      <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+      <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
         <el-col :span="6" :xs="24">
           <el-form-item label="搜索方式" prop="searchValue">
             <el-input v-model="queryParams.searchValue" style="width: 240px">

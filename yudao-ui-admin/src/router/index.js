@@ -68,7 +68,7 @@ export const constantRoutes = [
     path: '',
     component: Layout,
     redirect: 'index',
-    hidden: false,
+    hidden: true,
     children: [{
         path: 'index',
         component: (resolve) => require(['@/views/index'], resolve),
@@ -109,7 +109,7 @@ export const constantRoutes = [
   {
     path: '/job',
     component: Layout,
-    hidden: true,
+    hidden: false,
     children: [{
         path: 'log',
         component: (resolve) => require(['@/views/infra/job/log'], resolve),

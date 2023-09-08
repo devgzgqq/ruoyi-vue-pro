@@ -3,7 +3,7 @@
     <doc-alert title="站内信配置" url="https://doc.iocoder.cn/notify/" />
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="是否已读" prop="readStatus">
         <el-select v-model="queryParams.readStatus" placeholder="请选择状态" clearable>
           <el-option v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"

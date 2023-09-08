@@ -4,7 +4,7 @@
     <doc-alert title="异步任务" url="https://doc.iocoder.cn/async-task/" />
     <doc-alert title="消息队列" url="https://doc.iocoder.cn/message-queue/" />
     <!-- 搜索栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="100px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="任务名称" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入任务名称" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>
@@ -40,7 +40,7 @@
     </el-row>
 
     <el-table v-loading="loading" :data="jobList">
-      <el-table-column label="任务编号" align="center" prop="id" />
+      <el-table-column label="任务编号" align="center" prop="id" width="80"/>
       <el-table-column label="任务名称" align="center" prop="name" />
       <el-table-column label="任务状态" align="center" prop="status">
         <template v-slot="scope">

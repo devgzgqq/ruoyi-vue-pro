@@ -3,7 +3,7 @@
     <doc-alert title="功能开启" url="https://doc.iocoder.cn/mall/build/" />
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="分类名称" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入分类名称" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>
@@ -60,7 +60,7 @@
 
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="上级分类" prop="parentId">
           <Treeselect v-model="form.parentId" :options="parentCategoryOptions" :normalizer="normalizer" :show-count="true"
                       :defaultExpandLevel="1" placeholder="上级分类"/>

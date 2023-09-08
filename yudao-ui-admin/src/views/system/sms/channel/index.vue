@@ -2,7 +2,7 @@
   <div class="app-container">
     <doc-alert title="短信配置" url="https://doc.iocoder.cn/sms/" />
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="短信签名" prop="signature">
         <el-input v-model="queryParams.signature" placeholder="请输入短信签名" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>

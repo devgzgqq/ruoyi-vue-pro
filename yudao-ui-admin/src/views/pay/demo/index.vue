@@ -65,7 +65,7 @@
 
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="500px" v-dialogDrag append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="商品" prop="spuId">
           <el-select v-model="form.spuId" placeholder="请输入下单商品" clearable size="small" style="width: 380px" >
             <el-option v-for="item in spus" :key="item.id" :label="item.name" :value="item.id">

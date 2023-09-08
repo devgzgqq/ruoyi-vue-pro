@@ -3,7 +3,7 @@
     <doc-alert title="支付功能开启" url="https://doc.iocoder.cn/pay/build/" />
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="100px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="应用编号" prop="appId">
         <el-select clearable v-model="queryParams.appId" filterable placeholder="请选择应用信息">
           <el-option v-for="item in appList" :key="item.id" :label="item.name" :value="item.id" />

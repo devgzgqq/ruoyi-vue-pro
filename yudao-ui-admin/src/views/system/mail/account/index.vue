@@ -3,7 +3,7 @@
     <doc-alert title="邮件配置" url="https://doc.iocoder.cn/mail" />
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
       <el-form-item label="邮箱" prop="mail">
         <el-input v-model="queryParams.mail" placeholder="请输入邮箱" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>

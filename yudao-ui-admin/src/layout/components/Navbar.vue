@@ -122,6 +122,7 @@ export default {
   background: #fff;
   //box-shadow: 0 1px 4px rgba(0,21,41,.08);
   border-bottom: 1px solid #e7e7e7;
+  display: flex;
 
   .el-menu.el-menu--horizontal {
     background: transparent;
@@ -156,7 +157,7 @@ export default {
   }
 
   .right-menu {
-    float: right;
+    margin-left: auto;
     height: 100%;
     line-height: 50px;
 
@@ -193,8 +194,8 @@ export default {
 
         .user-avatar {
           cursor: pointer;
-          width: 35px;
-          height: 35px;
+          width: 28px;
+          height: 28px;
           border-radius: 50%;
         }
         .user-nickname{
