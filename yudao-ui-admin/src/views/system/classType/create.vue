@@ -11,6 +11,11 @@ export default defineComponent({
         className: '',
         classType: '',
         classGroup: '',
+        classStructure: [{
+          name: '',
+          code: '',
+          type: ''
+        }],
         sort: 0,
         status: true,
       },
@@ -20,26 +25,21 @@ export default defineComponent({
         classType: [{ required: true, message: "类型不能为空", trigger: "blur" }],
         classGroup: [{ required: true, message: "分组不能为空", trigger: "change" }],
         // status: [{ required: true, message: "状态不能为空", trigger: "blur" }],
-      },
-      dynamicValidateForm: {
-        domains: [{
-          value: ''
-        }],
-        email: ''
       }
     };
   },
   methods: {
-    removeDomain(item) {
-      var index = this.dynamicValidateForm.domains.indexOf(item)
+    removeSttr(item) {
+      var index = this.form.classStructure.indexOf(item)
       if (index !== -1) {
-        this.dynamicValidateForm.domains.splice(index, 1)
+        this.form.classStructure.splice(index, 1)
       }
     },
-    addDomain() {
-      this.dynamicValidateForm.domains.push({
-        value: '',
-        key: Date.now()
+    addSttr() {
+      this.form.classStructure.push({
+        name: '',
+        code: '',
+        type: ''
       });
     },
     /** 提交按钮 */
@@ -58,6 +58,7 @@ export default defineComponent({
         //   return;
         // }
         // 添加的提交
+        this.form.classStructure = JSON.stringify(this.form.classStructure)
         createClassType(this.form).then(response => {
           this.$modal.msgSuccess("新增成功");
           this.reset();
@@ -89,6 +90,7 @@ export default defineComponent({
 <template>
   <div class="app-container">
     <div class="gw-m-auto gw-w-5/12">
+
       <div class="gw-text-2xl gw-font-medium gw-my-6">
         类型信息
       </div>
@@ -120,47 +122,52 @@ export default defineComponent({
             </el-form-item>
           </div>
         </div>
-
-
-
-<!--        <el-form-item label="结构" prop="classStructure">-->
-<!--          <el-input v-model="form.classStructure" placeholder="请输入结构" />-->
-<!--        </el-form-item>-->
-<!--        <el-form-item label="状态" prop="status">-->
-<!--          &lt;!&ndash;          <el-radio-group v-model="form.status">&ndash;&gt;-->
-<!--          &lt;!&ndash;            <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"&ndash;&gt;-->
-<!--          &lt;!&ndash;                      :key="dict.value" :label="dict.value">{{dict.label}}</el-radio>&ndash;&gt;-->
-<!--          &lt;!&ndash;          </el-radio-group>&ndash;&gt;-->
-<!--          <el-switch v-model="form.status"></el-switch>-->
-<!--        </el-form-item>-->
-
       </el-form>
       <div class="gw-text-2xl gw-font-medium gw-my-6">
         结构信息
       </div>
       <div class="gw-mb-8">
         <div>
-          <el-button icon="el-icon-plus" @click="addDomain" circle></el-button>
+          <el-button icon="el-icon-plus" @click="addSttr" circle></el-button>
         </div>
-        <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
-          <el-form-item
-            v-for="(domain, index) in dynamicValidateForm.domains"
-            :label="'域名' + index"
-            :key="domain.key"
-            :prop="'domains.' + index + '.value'"
-            :rules="{
+        <el-form :model="form" ref="dynamicValidateForm" label-width="0px">
+          <el-table :data="form.classStructure">
+            <el-table-column label="域名" width="120">
+              <template #default="{row, column, $index}">
+                <el-form-item :prop="'classStructure.' + $index + '.name'" :rules="{
       required: true, message: '域名不能为空', trigger: 'blur'
-    }"
-          >
-            <el-input v-model="domain.value"></el-input><el-button @click.prevent="removeDomain(domain)">删除</el-button>
-          </el-form-item>
-<!--          <el-form-item>-->
-<!--            <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>-->
-<!--            <el-button @click="addDomain">新增域名</el-button>-->
-<!--            <el-button @click="resetForm('dynamicValidateForm')">重置</el-button>-->
-<!--          </el-form-item>-->
+    }">
+                  <el-input v-model="row.name"></el-input>
+                </el-form-item>
+              </template>
+            </el-table-column>
+            <el-table-column label="编码" width="120">
+              <template #default="{row, column, $index}">
+                <el-form-item :prop="'classStructure.' + $index + '.code'" :rules="{
+      required: true, message: '编码不能为空', trigger: 'blur'
+    }">
+                  <el-input v-model="row.code"></el-input>
+                </el-form-item>
+              </template>
+            </el-table-column>
+            <el-table-column label="类型" width="120">
+              <template #default="{row, column, $index}">
+                <el-form-item :prop="'classStructure.' + $index + '.type'" :rules="{
+      required: true, message: '类型不能为空', trigger: 'blur'
+    }">
+                  <el-input v-model="row.type"></el-input>
+                </el-form-item>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" width="120">
+              <template #default="{row}">
+                <el-button @click.prevent="removeSttr(row)">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
         </el-form>
       </div>
+
       <div>
         <el-button type="primary" @click="submitForm">确认提交</el-button>
         <el-button @click="cancel">取 消</el-button>
