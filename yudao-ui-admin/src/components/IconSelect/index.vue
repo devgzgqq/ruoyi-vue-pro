@@ -58,8 +58,9 @@ export default {
         float: left;
       }
       span {
+        margin-left: 5px;
         display: inline-block;
-        vertical-align: -0.15em;
+        vertical-align: middle;
         fill: currentColor;
         overflow: hidden;
       }

@@ -28,11 +28,16 @@ router.beforeEach((to, from, next) => {
         store.dispatch('GetInfo').then(userInfo => {
           isRelogin.show = false
           // 触发 GenerateRoutes 事件时，将 menus 菜单树传递进去
-          store.dispatch('GenerateRoutes', userInfo.menus).then(accessRoutes => {
-            // 根据 roles 权限生成可访问的路由表
-            router.addRoutes(accessRoutes) // 动态添加可访问路由表
-            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
-          })
+          if(userInfo.menus && userInfo.menus.length > 0){
+            store.dispatch('GenerateRoutes', userInfo.menus).then(accessRoutes => {
+              // 根据 roles 权限生成可访问的路由表
+              router.addRoutes(accessRoutes) // 动态添加可访问路由表
+              next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+            })
+          } else {
+            Message.error('用户没有任何权限，请联系管理员授权')
+            next({ path: '/' })
+          }
         }).catch(err => {
           store.dispatch('LogOut').then(() => {
             Message.error(err)

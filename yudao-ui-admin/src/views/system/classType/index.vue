@@ -42,15 +42,15 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
+      <el-table-column label="编号" align="center" prop="id"  width="80" />
       <el-table-column label="名称" align="center" prop="className" />
-      <el-table-column label="类型" align="center" prop="classType" />
+      <el-table-column label="编码" align="center" prop="classType" />
       <el-table-column label="分组" align="center" prop="classGroup">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_CLASS_GROUP" :value="scope.row.classGroup" />
         </template>
       </el-table-column>
-      <el-table-column label="结构" align="center" prop="classStructure" />
+<!--      <el-table-column label="结构" align="center" prop="classStructure" />-->
       <el-table-column label="状态" align="center" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.status" />
@@ -92,9 +92,9 @@
                        :key="dict.value" :label="dict.label" :value="dict.value" />
           </el-select>
         </el-form-item>
-        <el-form-item label="结构" prop="classStructure">
-          <el-input v-model="form.classStructure" placeholder="请输入结构" />
-        </el-form-item>
+<!--        <el-form-item label="结构" prop="classStructure">-->
+<!--          <el-input v-model="form.classStructure" placeholder="请输入结构" />-->
+<!--        </el-form-item>-->
         <el-form-item label="状态" prop="status">
 <!--          <el-radio-group v-model="form.status">-->
 <!--            <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"-->

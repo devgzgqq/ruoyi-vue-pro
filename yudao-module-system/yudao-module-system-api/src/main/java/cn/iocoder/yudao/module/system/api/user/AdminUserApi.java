@@ -1,6 +1,7 @@
 package cn.iocoder.yudao.module.system.api.user;
 
 import cn.iocoder.yudao.framework.common.util.collection.CollectionUtils;
+import cn.iocoder.yudao.module.system.api.user.dto.AdminUserCreateReqDTO;
 import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 
 import java.util.Collection;
@@ -13,6 +14,8 @@ import java.util.Map;
  * @author 芋道源码
  */
 public interface AdminUserApi {
+
+    AdminUserRespDTO createUser(AdminUserCreateReqDTO createDTO);
 
     /**
      * 通过用户 ID 查询用户

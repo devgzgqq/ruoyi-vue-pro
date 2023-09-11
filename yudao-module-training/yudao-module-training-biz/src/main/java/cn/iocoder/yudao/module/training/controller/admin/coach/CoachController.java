@@ -4,6 +4,9 @@ import cn.iocoder.yudao.framework.common.pojo.CommonResult;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
 import cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog;
+import cn.iocoder.yudao.module.system.api.user.AdminUserApi;
+import cn.iocoder.yudao.module.system.api.user.dto.AdminUserCreateReqDTO;
+import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import cn.iocoder.yudao.module.training.controller.admin.coach.vo.*;
 import cn.iocoder.yudao.module.training.convert.coach.CoachConvert;
 import cn.iocoder.yudao.module.training.dal.dataobject.coach.CoachDO;
@@ -34,11 +37,26 @@ public class CoachController {
     @Resource
     private CoachService coachService;
 
+    @Resource
+    private AdminUserApi adminUserApi;
+
     @PostMapping("/create")
     @Operation(summary = "创建教练")
     @PreAuthorize("@ss.hasPermission('training:coach:create')")
     public CommonResult<Long> createCoach(@Valid @RequestBody CoachCreateReqVO createReqVO) {
         return success(coachService.createCoach(createReqVO));
+    }
+
+    @PostMapping("/create-user")
+    @Operation(summary = "创建用户")
+    @PreAuthorize("@ss.hasPermission('training:coach:create')")
+    public CommonResult<Long> createUser(@Valid @RequestBody CoachUpdateReqVO updateReqVO) {
+        AdminUserCreateReqDTO createReqDTO = new AdminUserCreateReqDTO();
+        createReqDTO.setNickname(updateReqVO.getNickname());
+        AdminUserRespDTO user = adminUserApi.createUser(createReqDTO);
+        updateReqVO.setUserId(user.getId());
+        coachService.updateCoach(updateReqVO);
+        return success(user.getId());
     }
 
     @PutMapping("/update")

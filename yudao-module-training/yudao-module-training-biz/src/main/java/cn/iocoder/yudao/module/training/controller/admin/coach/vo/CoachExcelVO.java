@@ -1,15 +1,12 @@
 package cn.iocoder.yudao.module.training.controller.admin.coach.vo;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-
-import com.alibaba.excel.annotation.ExcelProperty;
 import cn.iocoder.yudao.framework.excel.core.annotations.DictFormat;
 import cn.iocoder.yudao.framework.excel.core.convert.DictConvert;
+import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 
 /**
@@ -22,6 +19,9 @@ public class CoachExcelVO {
 
     @ExcelProperty("教练编号")
     private Long id;
+
+    @ExcelProperty("教练昵称")
+    private String nickname;
 
     @ExcelProperty("教练名称")
     private String name;

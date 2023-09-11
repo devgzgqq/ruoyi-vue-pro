@@ -43,6 +43,7 @@
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
       <el-table-column label="编号" align="center" prop="id"  width="80" />
+      <el-table-column label="昵称" align="center" prop="nickname" />
       <el-table-column label="姓名" align="center" prop="name" />
       <el-table-column label="手机号" align="center" prop="mobile" />
       <el-table-column label="级别" align="center" prop="level">
@@ -72,12 +73,14 @@
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="180">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['training:coach:update']">修改</el-button>
           <el-button size="mini" type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['training:coach:delete']">删除</el-button>
+          <el-button size="mini" type="text" @click="handleContactUser(scope.row)"
+                     v-hasPermi="['training:coach:update']">创建用户</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -90,6 +93,9 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
         <el-form-item label="姓名" prop="name">
           <el-input v-model="form.name" placeholder="请输入教练名称" />
+        </el-form-item>
+        <el-form-item label="昵称" prop="nickname">
+          <el-input v-model="form.nickname" placeholder="请输入教练昵称" />
         </el-form-item>
         <el-form-item label="手机号" prop="mobile">
           <el-input v-model="form.mobile" placeholder="请输入教练手机号" />
@@ -145,7 +151,7 @@
 </template>
 
 <script>
-import { createCoach, updateCoach, deleteCoach, getCoach, getCoachPage, exportCoachExcel } from "@/api/training/coach";
+import { createCoach, createUserOfCoach, updateCoach, deleteCoach, getCoach, getCoachPage, exportCoachExcel } from "@/api/training/coach";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor/index.vue'
 
@@ -171,6 +177,7 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
+      contactUserOpen: false,
       // 查询参数
       queryParams: {
         pageNo: 1,
@@ -186,6 +193,7 @@ export default {
       // 表单校验
       rules: {
         name: [{ required: true, message: "教练名称不能为空", trigger: "blur" }],
+        nickname: [{ required: true, message: "教练昵称不能为空", trigger: "blur" }],
       }
     };
   },
@@ -193,6 +201,12 @@ export default {
     this.getList();
   },
   methods: {
+    createUserOfCoach(row) {
+      createUserOfCoach(row).then(response => {
+        this.$modal.msgSuccess("创建用户成功");
+        this.contactUserOpen = false;
+      });
+    },
     /** 查询列表 */
     getList() {
       this.loading = true;
@@ -212,6 +226,7 @@ export default {
     reset() {
       this.form = {
         id: undefined,
+        nickname: undefined,
         name: undefined,
         mobile: undefined,
         avatar: undefined,
@@ -251,6 +266,12 @@ export default {
         this.form.label = this.form.label.split(",");
         this.open = true;
         this.title = "修改教练";
+      });
+    },
+    /** 关联用户按钮操作 */
+    handleContactUser(row) {
+      this.createUserOfCoach(row).then(response => {
+        this.$modal.msgSuccess("创建用户成功");
       });
     },
     /** 提交按钮 */

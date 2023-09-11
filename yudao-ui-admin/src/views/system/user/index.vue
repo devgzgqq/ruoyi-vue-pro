@@ -76,13 +76,13 @@
                                  v-hasPermi="['system:user:update']">修改</el-button>
                       <el-dropdown  @command="(command) => handleCommand(command, scope.$index, scope.row)"
                                     v-hasPermi="['system:user:delete', 'system:user:update-password', 'system:permission:assign-user-role']">
-                        <el-button size="mini" type="text" icon="el-icon-d-arrow-right">更多</el-button>
+                        <el-button size="mini" type="text">更多</el-button>
                         <el-dropdown-menu slot="dropdown">
                           <el-dropdown-item command="handleDelete" v-if="scope.row.id !== 1" size="mini"type="text"
                                             v-hasPermi="['system:user:delete']">删除</el-dropdown-item>
-                          <el-dropdown-item command="handleResetPwd" size="mini" type="text" icon="el-icon-key"
+                          <el-dropdown-item command="handleResetPwd" size="mini" type="text"
                                             v-hasPermi="['system:user:update-password']">重置密码</el-dropdown-item>
-                          <el-dropdown-item command="handleRole" size="mini" type="text" icon="el-icon-circle-check"
+                          <el-dropdown-item command="handleRole" size="mini" type="text"
                                             v-hasPermi="['system:permission:assign-user-role']">分配角色</el-dropdown-item>
                         </el-dropdown-menu>
                       </el-dropdown>
@@ -250,6 +250,20 @@
             </el-form-item>
           </el-col>
         </el-row>
+<!--        <el-row :gutter="20">-->
+<!--          <el-col :span="12">-->
+<!--            <el-form-item label="类型">-->
+<!--              <el-select v-model="form.p" multiple placeholder="请选择">-->
+<!--                <el-option-->
+<!--                  v-for="item in postOptions"-->
+<!--                  :key="item.id"-->
+<!--                  :label="item.name"-->
+<!--                  :value="item.id"-->
+<!--                ></el-option>-->
+<!--              </el-select>-->
+<!--            </el-form-item>-->
+<!--          </el-col>-->
+<!--        </el-row>-->
         <el-row>
           <el-col :span="24">
             <el-form-item label="备注">

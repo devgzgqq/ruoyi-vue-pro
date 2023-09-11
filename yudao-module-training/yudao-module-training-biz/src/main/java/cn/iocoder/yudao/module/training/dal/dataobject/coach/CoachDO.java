@@ -1,12 +1,13 @@
 package cn.iocoder.yudao.module.training.dal.dataobject.coach;
 
-import lombok.*;
-import java.util.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.*;
 import cn.iocoder.yudao.framework.mybatis.core.dataobject.BaseDO;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.sun.xml.bind.v2.TODO;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 /**
  * 教练 DO
@@ -28,6 +29,10 @@ public class CoachDO extends BaseDO {
      */
     @TableId
     private Long id;
+    /**
+     * 教练昵称
+     */
+    private String nickname;
     /**
      * 教练名称
      */
@@ -80,5 +85,10 @@ public class CoachDO extends BaseDO {
      * 排序
      */
     private Integer sort;
+
+    /**
+     * 用户编号
+     */
+    private Long userId;
 
 }

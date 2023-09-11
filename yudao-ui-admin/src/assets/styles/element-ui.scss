@@ -111,3 +111,16 @@
 .el-loading-spinner {
   @apply gw-flex gw-justify-center
 }
+
+.vue-treeselect__control {
+  border-radius: 2px !important;
+  height: 32px !important;
+}
+
+.vue-treeselect__menu {
+  border-radius: 2px !important;
+}
+
+.vue-treeselect--has-value .vue-treeselect__input {
+  vertical-align: middle !important;
+}

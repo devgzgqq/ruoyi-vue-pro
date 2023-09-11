@@ -9,6 +9,14 @@ export function createCoach(data) {
   })
 }
 
+export function createUserOfCoach(data) {
+  return request({
+    url: '/training/coach/create-user',
+    method: 'post',
+    data: data
+  })
+}
+
 // 更新教练
 export function updateCoach(data) {
   return request({
