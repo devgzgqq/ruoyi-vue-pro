@@ -30,7 +30,9 @@ public class AdminUserApiImpl implements AdminUserApi {
     @Override
     public AdminUserRespDTO createUser(AdminUserCreateReqDTO createDTO) {
         UserCreateReqVO userCreateReqVO = new UserCreateReqVO();
+//        BeanUtil.copyProperties(userCreateReqVO, createDTO);
         userCreateReqVO.setUsername(createDTO.getNickname());
+        userCreateReqVO.setMobile(createDTO.getMobile());
         userCreateReqVO.setNickname(createDTO.getNickname());
         userCreateReqVO.setPassword("123456");
         Long id = userService.createUser(userCreateReqVO);

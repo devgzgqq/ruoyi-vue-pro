@@ -9,6 +9,14 @@ export function createSalesperson(data) {
   })
 }
 
+export function createUser(data) {
+  return request({
+    url: '/operation/salesperson/create-user',
+    method: 'post',
+    data: data
+  })
+}
+
 // 更新顾问
 export function updateSalesperson(data) {
   return request({

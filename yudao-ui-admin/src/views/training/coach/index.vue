@@ -270,9 +270,16 @@ export default {
     },
     /** 关联用户按钮操作 */
     handleContactUser(row) {
-      this.createUserOfCoach(row).then(response => {
-        this.$modal.msgSuccess("创建用户成功");
-      });
+      try {
+        this.createUserOfCoach(row).then(response => {
+          if(response && response.data()) {
+            this.$modal.msgSuccess("创建用户成功");
+          }
+        });
+      } catch (e) {
+
+      }
+
     },
     /** 提交按钮 */
     submitForm() {

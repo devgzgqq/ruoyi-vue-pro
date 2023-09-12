@@ -55,7 +55,7 @@
       <el-table-column label="姓名" align="center" prop="name" />
       <el-table-column label="昵称" align="center" prop="nickname" />
       <el-table-column label="手机号" align="center" prop="mobile" />
-      <el-table-column label="顾问级别" align="center" prop="level">
+      <el-table-column label="级别" align="center" prop="level">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.OPERATION_SALESPERSON_LEVEL" :value="scope.row.level" />
         </template>
@@ -78,10 +78,12 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
+          <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['operation:salesperson:update']">修改</el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini" type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['operation:salesperson:delete']">删除</el-button>
+          <el-button :disabled="!!scope.row.userId" size="mini" type="text" @click="handleCreateUser(scope.row)"
+                     v-hasPermi="['operation:salesperson:update']">创建用户</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -135,7 +137,7 @@
 </template>
 
 <script>
-import { createSalesperson, updateSalesperson, deleteSalesperson, getSalesperson, getSalespersonPage, exportSalespersonExcel } from "@/api/operation/salesperson";
+import { createSalesperson, createUser, updateSalesperson, deleteSalesperson, getSalesperson, getSalespersonPage, exportSalespersonExcel } from "@/api/operation/salesperson";
 import ImageUpload from '@/components/ImageUpload';
 
 export default {
@@ -178,7 +180,6 @@ export default {
       // 表单校验
       rules: {
         name: [{ required: true, message: "顾问名称不能为空", trigger: "blur" }],
-        sort: [{ required: true, message: "排序不能为空", trigger: "blur" }],
         nickname: [{ required: true, message: "顾问昵称不能为空", trigger: "blur" }],
       }
     };
@@ -245,6 +246,16 @@ export default {
         this.open = true;
         this.title = "修改顾问";
       });
+    },
+    handleCreateUser(row) {
+      try {
+        createUser(row).then(response => {
+          this.$modal.msgSuccess("创建用户成功");
+          this.getList();
+        });
+      } catch (e) {
+        this.$modal.msgError(e);
+      }
     },
     /** 提交按钮 */
     submitForm() {

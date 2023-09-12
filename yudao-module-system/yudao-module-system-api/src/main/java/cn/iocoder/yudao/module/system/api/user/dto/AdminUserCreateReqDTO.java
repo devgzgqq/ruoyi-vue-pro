@@ -9,4 +9,6 @@ public class AdminUserCreateReqDTO {
      */
     private String nickname;
 
+    private String mobile;
+
 }

@@ -23,6 +23,11 @@
             <artifactId>yudao-module-operation-api</artifactId>
             <version>${version}</version>
         </dependency>
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-module-system-api</artifactId>
+            <version>${version}</version>
+        </dependency>
 
         <!-- 业务组件 -->
         <dependency>
