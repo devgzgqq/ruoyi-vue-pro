@@ -6,6 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.common.util.date.LocalDateTimeUtils;
+import cn.iocoder.yudao.framework.common.util.number.MoneyUtils;
 import cn.iocoder.yudao.framework.pay.core.client.PayClient;
 import cn.iocoder.yudao.framework.pay.core.client.PayClientFactory;
 import cn.iocoder.yudao.framework.pay.core.client.dto.order.PayOrderRespDTO;
@@ -31,7 +32,6 @@ import cn.iocoder.yudao.module.pay.framework.pay.config.PayProperties;
 import cn.iocoder.yudao.module.pay.service.app.PayAppService;
 import cn.iocoder.yudao.module.pay.service.channel.PayChannelService;
 import cn.iocoder.yudao.module.pay.service.notify.PayNotifyService;
-import cn.iocoder.yudao.module.pay.util.MoneyUtils;
 import com.google.common.annotations.VisibleForTesting;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -345,7 +345,8 @@ public class PayOrderServiceImpl implements PayOrderService {
                         .channelId(channel.getId()).channelCode(channel.getCode())
                         .successTime(notify.getSuccessTime()).extensionId(orderExtension.getId()).no(orderExtension.getNo())
                         .channelOrderNo(notify.getChannelOrderNo()).channelUserId(notify.getChannelUserId())
-                        .channelFeeRate(channel.getFeeRate()).channelFeePrice(MoneyUtils.calculateRatePrice(order.getPrice(), channel.getFeeRate()))
+                        .channelFeeRate(channel.getFeeRate())
+		                .channelFeePrice(MoneyUtils.calculateRatePrice(order.getPrice(), channel.getFeeRate()))
                         .build());
         if (updateCounts == 0) { // 校验状态，必须是待支付
             throw exception(ORDER_STATUS_IS_NOT_WAITING);
@@ -411,8 +412,25 @@ public class PayOrderServiceImpl implements PayOrderService {
     }
 
     @Override
+    public void updatePayOrderPriceById(Long payOrderId, Integer payPrice) {
+        // TODO @puhui999：不能直接这样修改哈；应该只有未支付状态的订单才可以改；另外，如果价格如果没变，可以直接 return 哈；
+        PayOrderDO order = orderMapper.selectById(payOrderId);
+        if (order == null) {
+            throw exception(ORDER_NOT_FOUND);
+        }
+
+        order.setPrice(payPrice);
+        orderMapper.updateById(order);
+    }
+
+    @Override
     public PayOrderExtensionDO getOrderExtension(Long id) {
         return orderExtensionMapper.selectById(id);
+    }
+
+    @Override
+    public PayOrderExtensionDO getOrderExtensionByNo(String no) {
+        return orderExtensionMapper.selectByNo(no);
     }
 
     @Override
