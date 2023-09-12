@@ -157,7 +157,8 @@ logging:
     cn.iocoder.yudao.module.system.dal.mysql: debug
     cn.iocoder.yudao.module.tool.dal.mysql: debug
     cn.iocoder.yudao.module.member.dal.mysql: debug
-    cn.iocoder.yudao.module.trade.dal.mysql: debug
+    cn.iocoder.yudao.module.training.dal.mysql: debug
+    cn.iocoder.yudao.module.opreation.dal.mysql: debug
     cn.iocoder.yudao.module.promotion.dal.mysql: debug
 
 debug: false

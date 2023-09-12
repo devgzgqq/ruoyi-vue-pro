@@ -24,6 +24,7 @@
         <!-- 示例项目 -->
         <module>yudao-example</module>
         <module>yudao-module-training</module>
+        <module>yudao-module-operation</module>
     </modules>
 
     <name>${project.artifactId}</name>

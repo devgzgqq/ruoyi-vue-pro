@@ -109,7 +109,7 @@ export const constantRoutes = [
   {
     path: '/job',
     component: Layout,
-    hidden: false,
+    hidden: true,
     children: [{
         path: 'log',
         component: (resolve) => require(['@/views/infra/job/log'], resolve),
