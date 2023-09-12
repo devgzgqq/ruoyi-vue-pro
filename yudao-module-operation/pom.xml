@@ -19,7 +19,7 @@
 
     <modules>
         <module>yudao-module-operation-api</module>
-        <module>yudao-module-operation.biz</module>
+        <module>yudao-module-operation-biz</module>
     </modules>
 
     <properties>

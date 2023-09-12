@@ -92,7 +92,7 @@
 
         <dependency>
             <groupId>cn.iocoder.boot</groupId>
-            <artifactId>yudao-module-operation.biz</artifactId>
+            <artifactId>yudao-module-operation-biz</artifactId>
             <version>${version}</version>
         </dependency>
 

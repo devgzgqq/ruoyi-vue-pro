@@ -86,6 +86,9 @@ export const DICT_TYPE = {
   // ========== TRAINING - COACH 模块 ==========
   TRAINING_COACH_LEVEL: 'training_coach_level', // 教练级别
   TRAINING_COACH_TAGS: 'training_coach_tags', // 教练标签
+
+  // ========== OPERATION - SALESPERSON 模块 ==========
+  OPERATION_SALESPERSON_LEVEL: 'operation_salesperson_level', // 业务员级别
 }
 
 /**
