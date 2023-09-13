@@ -39,38 +39,38 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="任务编号" align="center" prop="id" />
-      <el-table-column label="应用编号" align="center" prop="appName" />
-      <el-table-column label="商户订单编号" align="center" prop="merchantOrderId" />
-      <el-table-column label="通知类型" align="center" prop="type">
+      <el-table-column label="任务编号" align="left" prop="id" />
+      <el-table-column label="应用编号" align="left" prop="appName" />
+      <el-table-column label="商户订单编号" align="left" prop="merchantOrderId" />
+      <el-table-column label="通知类型" align="left" prop="type">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PAY_NOTIFY_TYPE" :value="scope.row.type" />
         </template>
       </el-table-column>
-      <el-table-column label="关联编号" align="center" prop="dataId" />
-      <el-table-column label="通知状态" align="center" prop="status">
+      <el-table-column label="关联编号" align="left" prop="dataId" />
+      <el-table-column label="通知状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PAY_NOTIFY_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="最后通知时间" align="center" prop="lastExecuteTime" width="180">
+      <el-table-column label="最后通知时间" align="left" prop="lastExecuteTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.lastExecuteTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="下次通知时间" align="center" prop="nextNotifyTime" width="180">
+      <el-table-column label="下次通知时间" align="left" prop="nextNotifyTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.nextNotifyTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="通知次数" align="center" prop="notifyTimes">
+      <el-table-column label="通知次数" align="left" prop="notifyTimes">
         <template v-slot="scope">
           <el-tag size="mini" type="success">
             {{ scope.row.notifyTimes }} / {{ scope.row.maxNotifyTimes }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-search" @click="handleDetail(scope.row)"
                      v-hasPermi="['pay:notify:query']">查看详情
@@ -119,19 +119,19 @@
       <el-descriptions :column="1" label-class-name="desc-label" direction="vertical" border>
         <el-descriptions-item label="回调日志">
           <el-table :data="notifyDetail.logs">
-            <el-table-column label="日志编号" align="center" prop="id" />
-            <el-table-column label="通知状态" align="center" prop="status">
+            <el-table-column label="日志编号" align="left" prop="id" />
+            <el-table-column label="通知状态" align="left" prop="status">
               <template v-slot="scope">
                 <dict-tag :type="DICT_TYPE.PAY_NOTIFY_STATUS" :value="scope.row.status" />
               </template>
             </el-table-column>
-            <el-table-column label="通知次数" align="center" prop="notifyTimes" />
-            <el-table-column label="通知时间" align="center" prop="lastExecuteTime" width="180">
+            <el-table-column label="通知次数" align="left" prop="notifyTimes" />
+            <el-table-column label="通知时间" align="left" prop="lastExecuteTime" width="180">
               <template v-slot="scope">
                 <span>{{ parseTime(scope.row.createTime) }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="响应结果" align="center" prop="response" />
+            <el-table-column label="响应结果" align="left" prop="response" />
           </el-table>
         </el-descriptions-item>
       </el-descriptions>

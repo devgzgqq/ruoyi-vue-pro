@@ -30,23 +30,23 @@
     <el-table v-if="refreshTable" v-loading="loading" :data="list"  row-key="id" :default-expand-all="isExpandAll"
               :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
       <el-table-column label="分类名称" prop="name"/>
-      <el-table-column label="分类图片" align="center" prop="picUrl">
+      <el-table-column label="分类图片" align="left" prop="picUrl">
         <template v-slot="scope">
           <img v-if="scope.row.picUrl" :src="scope.row.picUrl" alt="分类图片" style="height: 100px"/>
         </template>
       </el-table-column>
-      <el-table-column label="分类排序" align="center" prop="sort"/>
-      <el-table-column label="开启状态" align="center" prop="status">
+      <el-table-column label="分类排序" align="left" prop="sort"/>
+      <el-table-column label="开启状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['product:category:update']">修改

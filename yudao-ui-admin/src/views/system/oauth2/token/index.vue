@@ -24,25 +24,25 @@
 
     </el-form>
     <el-table v-loading="loading" :data="list" style="width: 100%;">
-      <el-table-column label="访问令牌" align="center" prop="accessToken" width="300" />
-      <el-table-column label="刷新令牌" align="center" prop="refreshToken" width="300" />
-      <el-table-column label="用户编号" align="center" prop="userId" />
-      <el-table-column label="用户类型" align="center" prop="userType" width="100">
+      <el-table-column label="访问令牌" align="left" prop="accessToken" width="300" />
+      <el-table-column label="刷新令牌" align="left" prop="refreshToken" width="300" />
+      <el-table-column label="用户编号" align="left" prop="userId" />
+      <el-table-column label="用户类型" align="left" prop="userType" width="100">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.USER_TYPE" :value="scope.row.userType"/>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="过期时间" align="center" prop="expiresTime" width="180">
+      <el-table-column label="过期时间" align="left" prop="expiresTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.expiresTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini"type="text" @click="handleForceLogout(scope.row)"
             v-hasPermi="['system:oauth2-token:delete']">强退</el-button>

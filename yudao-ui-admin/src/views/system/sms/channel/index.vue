@@ -33,28 +33,28 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="短信签名" align="center" prop="signature" />
-      <el-table-column label="渠道编码" align="center" prop="code">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="短信签名" align="left" prop="signature" />
+      <el-table-column label="渠道编码" align="left" prop="code">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_SMS_CHANNEL_CODE" :value="scope.row.code"/>
         </template>
       </el-table-column>
-      <el-table-column label="启用状态" align="center" prop="status">
+      <el-table-column label="启用状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>>
-      <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="短信 API 的账号" align="center" prop="apiKey" />
-      <el-table-column label="短信 API 的密钥" align="center" prop="apiSecret" />
-      <el-table-column label="短信发送回调 URL" align="center" prop="callbackUrl" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="备注" align="left" prop="remark" />
+      <el-table-column label="短信 API 的账号" align="left" prop="apiKey" />
+      <el-table-column label="短信 API 的密钥" align="left" prop="apiSecret" />
+      <el-table-column label="短信发送回调 URL" align="left" prop="callbackUrl" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:sms-channel:update']">修改</el-button>

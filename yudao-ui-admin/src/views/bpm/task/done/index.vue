@@ -19,32 +19,32 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="任务编号" align="center" prop="id" width="320" fixed />
-      <el-table-column label="任务名称" align="center" prop="name" width="200" />
-      <el-table-column label="所属流程" align="center" prop="processInstance.name" width="200" />
-      <el-table-column label="流程发起人" align="center" prop="processInstance.startUserNickname" width="120" />
-      <el-table-column label="结果" align="center" prop="result">
+      <el-table-column label="任务编号" align="left" prop="id" width="320" fixed />
+      <el-table-column label="任务名称" align="left" prop="name" width="200" />
+      <el-table-column label="所属流程" align="left" prop="processInstance.name" width="200" />
+      <el-table-column label="流程发起人" align="left" prop="processInstance.startUserNickname" width="120" />
+      <el-table-column label="结果" align="left" prop="result">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.BPM_PROCESS_INSTANCE_RESULT" :value="scope.row.result"/>
         </template>
       </el-table-column>
-      <el-table-column label="审批意见" align="center" prop="reason" width="200" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="审批意见" align="left" prop="reason" width="200" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="审批时间" align="center" prop="endTime" width="180">
+      <el-table-column label="审批时间" align="left" prop="endTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.endTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="耗时" align="center" prop="durationInMillis" width="180">
+      <el-table-column label="耗时" align="left" prop="durationInMillis" width="180">
         <template v-slot="scope">
           <span>{{ getDateStar(scope.row.durationInMillis) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" fixed="right" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" fixed="right" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleAudit(scope.row)"
                      v-hasPermi="['bpm:task:query']">详情</el-button>

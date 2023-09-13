@@ -37,27 +37,27 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="模板编码" align="center" prop="code" />
-      <el-table-column label="模板名称" align="center" prop="name" />
-      <el-table-column label="类型" align="center" prop="type">
+      <el-table-column label="模板编码" align="left" prop="code" />
+      <el-table-column label="模板名称" align="left" prop="name" />
+      <el-table-column label="类型" align="left" prop="type">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_NOTIFY_TEMPLATE_TYPE" :value="scope.row.type" />
         </template>
       </el-table-column>
-      <el-table-column label="发送人名称" align="center" prop="nickname" />
-      <el-table-column label="模板内容" align="center" prop="content" width="300" />
-      <el-table-column label="开启状态" align="center" prop="status">
+      <el-table-column label="发送人名称" align="left" prop="nickname" />
+      <el-table-column label="模板内容" align="left" prop="content" width="300" />
+      <el-table-column label="开启状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="备注" align="left" prop="remark" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="150">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width" width="150">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-share" @click="handleSendNotify(scope.row)"
                      v-hasPermi="['system:notify-template:send-notify']">测试</el-button>

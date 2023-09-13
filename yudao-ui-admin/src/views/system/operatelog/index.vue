@@ -42,31 +42,31 @@
     </el-row>
 
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="日志编号" align="center" prop="id" />
-      <el-table-column label="操作模块" align="center" prop="module" />
-      <el-table-column label="操作名" align="center" prop="name" width="180" />
-      <el-table-column label="操作类型" align="center" prop="type">
+      <el-table-column label="日志编号" align="left" prop="id" />
+      <el-table-column label="操作模块" align="left" prop="module" />
+      <el-table-column label="操作名" align="left" prop="name" width="180" />
+      <el-table-column label="操作类型" align="left" prop="type">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_OPERATE_TYPE" :value="scope.row.type"/>
         </template>
       </el-table-column>
-      <el-table-column label="操作人" align="center" prop="userNickname" />
-      <el-table-column label="操作结果" align="center" prop="status">
+      <el-table-column label="操作人" align="left" prop="userNickname" />
+      <el-table-column label="操作结果" align="left" prop="status">
         <template v-slot="scope">
           <span>{{ scope.row.resultCode === 0 ? '成功' : '失败' }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作日期" align="center" prop="startTime" width="180">
+      <el-table-column label="操作日期" align="left" prop="startTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.startTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="执行时长" align="center" prop="startTime">
+      <el-table-column label="执行时长" align="left" prop="startTime">
         <template v-slot="scope">
           <span>{{ scope.row.duration }}  ms</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-view" @click="handleView(scope.row,scope.index)"
                      v-hasPermi="['system:operate-log:query']">详细</el-button>

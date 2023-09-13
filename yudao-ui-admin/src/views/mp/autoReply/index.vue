@@ -66,19 +66,19 @@ SOFTWARE.
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="请求消息类型" align="center" prop="requestMessageType" v-if="type === '2'" />
-      <el-table-column label="关键词" align="center" prop="requestKeyword" v-if="type === '3'" />
-      <el-table-column label="匹配类型" align="center" prop="requestMatch" v-if="type === '3'">
+      <el-table-column label="请求消息类型" align="left" prop="requestMessageType" v-if="type === '2'" />
+      <el-table-column label="关键词" align="left" prop="requestKeyword" v-if="type === '3'" />
+      <el-table-column label="匹配类型" align="left" prop="requestMatch" v-if="type === '3'">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.MP_AUTO_REPLY_REQUEST_MATCH" :value="scope.row.requestMatch"/>
         </template>
       </el-table-column>
-      <el-table-column label="回复消息类型" align="center">
+      <el-table-column label="回复消息类型" align="left">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.MP_MESSAGE_TYPE" :value="scope.row.responseMessageType"/>
         </template>
       </el-table-column>
-      <el-table-column label="回复内容" align="center">
+      <el-table-column label="回复内容" align="left">
         <template v-slot="scope">
           <div v-if="scope.row.responseMessageType === 'text'">{{ scope.row.responseContent }}</div>
           <div v-else-if="scope.row.responseMessageType === 'voice'">
@@ -102,12 +102,12 @@ SOFTWARE.
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['mp:auto-reply:update']">修改

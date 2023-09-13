@@ -53,13 +53,13 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="手机号" align="center" prop="mobile" width="120">
+      <el-table-column label="手机号" align="left" prop="mobile" width="120">
         <template v-slot="scope">
           <div>{{ scope.row.mobile }}</div>
           <div v-if="scope.row.userType && scope.row.userId">
@@ -67,32 +67,32 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="短信内容" align="center" prop="templateContent" width="300" />
-      <el-table-column label="发送状态" align="center" width="180">
+      <el-table-column label="短信内容" align="left" prop="templateContent" width="300" />
+      <el-table-column label="发送状态" align="left" width="180">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_SMS_SEND_STATUS" :value="scope.row.sendStatus"/>
           <div>{{ parseTime(scope.row.sendTime) }}</div>
         </template>
       </el-table-column>
-      <el-table-column label="接收状态" align="center" width="180">
+      <el-table-column label="接收状态" align="left" width="180">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_SMS_RECEIVE_STATUS" :value="scope.row.receiveStatus"/>
           <div>{{ parseTime(scope.row.receiveTime) }}</div>
         </template>
       </el-table-column>
-      <el-table-column label="短信渠道" align="center" width="120">
+      <el-table-column label="短信渠道" align="left" width="120">
         <template v-slot="scope">
           <div>{{ formatChannelSignature(scope.row.channelId) }}</div>
           <dict-tag :type="DICT_TYPE.SYSTEM_SMS_CHANNEL_CODE" :value="scope.row.channelCode"/>
         </template>
       </el-table-column>
-      <el-table-column label="模板编号" align="center" prop="templateId" />
-      <el-table-column label="短信类型" align="center" prop="templateType">
+      <el-table-column label="模板编号" align="left" prop="templateId" />
+      <el-table-column label="短信类型" align="left" prop="templateType">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_SMS_TEMPLATE_TYPE" :value="scope.row.templateType"/>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-view" @click="handleView(scope.row)"
                      v-hasPermi="['system:sms-log:query']">详细</el-button>

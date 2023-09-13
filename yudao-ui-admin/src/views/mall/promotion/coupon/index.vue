@@ -29,34 +29,34 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="会员信息" align="center" prop="nickname" /> <!-- TODO 芋艿：以后支持头像，支持跳转 -->
-      <el-table-column label="优惠劵" align="center" prop="name" />
-      <el-table-column label="优惠券类型" align="center" prop="discountType">
+      <el-table-column label="会员信息" align="left" prop="nickname" /> <!-- TODO 芋艿：以后支持头像，支持跳转 -->
+      <el-table-column label="优惠劵" align="left" prop="name" />
+      <el-table-column label="优惠券类型" align="left" prop="discountType">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PROMOTION_DISCOUNT_TYPE" :value="scope.row.discountType" />
         </template>
       </el-table-column>
-      <el-table-column label="领取方式" align="center" prop="takeType">
+      <el-table-column label="领取方式" align="left" prop="takeType">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PROMOTION_COUPON_TAKE_TYPE" :value="scope.row.takeType" />
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PROMOTION_COUPON_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="领取时间" align="center" prop="createTime" width="180">
+      <el-table-column label="领取时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="使用时间" align="center" prop="useTime" width="180">
+      <el-table-column label="使用时间" align="left" prop="useTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.useTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini"type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['promotion:coupon:delete']">回收</el-button>

@@ -38,37 +38,37 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="用户编号" align="center" prop="userId" />
-      <el-table-column label="用户类型" align="center" prop="userType">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="用户编号" align="left" prop="userId" />
+      <el-table-column label="用户类型" align="left" prop="userType">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.USER_TYPE" :value="scope.row.userType" />
         </template>
       </el-table-column>
-      <el-table-column label="模板编码" align="center" prop="templateCode" />
-      <el-table-column label="发送人名称" align="center" prop="templateNickname" />
-      <el-table-column label="模版内容" align="center" prop="templateContent" />
-      <el-table-column label="模版类型" align="center" prop="templateType">
+      <el-table-column label="模板编码" align="left" prop="templateCode" />
+      <el-table-column label="发送人名称" align="left" prop="templateNickname" />
+      <el-table-column label="模版内容" align="left" prop="templateContent" />
+      <el-table-column label="模版类型" align="left" prop="templateType">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_NOTIFY_TEMPLATE_TYPE" :value="scope.row.templateType" />
         </template>
       </el-table-column>
-      <el-table-column label="是否已读" align="center" prop="readStatus">
+      <el-table-column label="是否已读" align="left" prop="readStatus">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.readStatus" />
         </template>
       </el-table-column>
-      <el-table-column label="阅读时间" align="center" prop="readTime" width="180">
+      <el-table-column label="阅读时间" align="left" prop="readTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.readTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-view" @click="handleView(scope.row)"
                      v-hasPermi="['system:notify-message:query']">详细</el-button>

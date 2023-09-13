@@ -35,27 +35,27 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="标题" align="center" prop="title"/>
+      <el-table-column label="标题" align="left" prop="title"/>
 
-      <el-table-column label="缩略图" align="center" prop="picUrl">
+      <el-table-column label="缩略图" align="left" prop="picUrl">
         <template v-slot="scope">
           <img v-if="scope.row.picUrl" :src="scope.row.picUrl" alt="缩略图片" class="img-height"/>
         </template>
       </el-table-column>
-      <el-table-column label="跳转链接" align="center" prop="url"/>
-      <el-table-column label="排序" align="center" prop="sort"/>
-      <el-table-column label="描述" align="center" prop="memo"/>
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="跳转链接" align="left" prop="url"/>
+      <el-table-column label="排序" align="left" prop="sort"/>
+      <el-table-column label="描述" align="left" prop="memo"/>
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['market:banner:update']">修改

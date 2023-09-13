@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.sun.xml.bind.v2.TODO;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -78,6 +79,16 @@ public class AdminUserDO extends TenantBaseDO {
      * 用户头像
      */
     private String avatar;
+    /**
+     * 用户类型
+     *
+     * 枚举 {@link TODO system_user_type 对应的类}
+     */
+    private String type;
+    /**
+     * 扩展属性
+     */
+    private String extend;
     /**
      * 帐号状态
      *

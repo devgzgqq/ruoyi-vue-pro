@@ -13,24 +13,24 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="秒杀时段名称" align="center" prop="name" />
-      <el-table-column label="开始时间点" align="center" prop="startTime" width="180">
+      <el-table-column label="秒杀时段名称" align="left" prop="name" />
+      <el-table-column label="开始时间点" align="left" prop="startTime" width="180">
         <template v-slot="scope">
           <span>{{ scope.row.startTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="结束时间点" align="center" prop="endTime" width="180">
+      <el-table-column label="结束时间点" align="left" prop="endTime" width="180">
         <template v-slot="scope">
           <span>{{ scope.row.endTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="秒杀活动数量" align="center" prop="seckillActivityCount" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="秒杀活动数量" align="left" prop="seckillActivityCount" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-view" @click="handleOpenSeckillActivity(scope.row)">
             查看秒杀活动</el-button>

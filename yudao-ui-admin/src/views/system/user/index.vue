@@ -14,7 +14,7 @@
                 </div>
       </div>
       <div class="gw-col-span-10 gw-py-8">
-                <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch" label-width="68px">
+                <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
                   <el-form-item label="用户名称" prop="username">
                     <el-input v-model="queryParams.username" placeholder="请输入用户名称" clearable style="width: 240px"
                               @keyup.enter.native="handleQuery"/>
@@ -26,6 +26,12 @@
                   <el-form-item label="状态" prop="status">
                     <el-select v-model="queryParams.status" placeholder="用户状态" clearable style="width: 240px">
                       <el-option v-for="dict in statusDictDatas" :key="parseInt(dict.value)" :label="dict.label" :value="parseInt(dict.value)"/>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="类型" prop="type">
+                    <el-select v-model="queryParams.type" placeholder="请选择用户类型" clearable size="mini">
+                      <el-option v-for="dict in this.getDictDatas(DICT_TYPE.SYSTEM_USER_TYPE)"
+                                 :key="dict.value" :label="dict.label" :value="dict.value"/>
                     </el-select>
                   </el-form-item>
         <!--          <el-form-item label="创建时间" prop="createTime">-->
@@ -55,22 +61,27 @@
                 </el-row>
 
                 <el-table v-loading="loading" :data="userList">
-                  <el-table-column label="用户编号" align="center" key="id" prop="id" v-if="columns[0].visible" />
-                  <el-table-column label="用户名称" align="center" key="username" prop="username" v-if="columns[1].visible" :show-overflow-tooltip="true" />
-                  <el-table-column label="用户昵称" align="center" key="nickname" prop="nickname" v-if="columns[2].visible" :show-overflow-tooltip="true" />
-                  <el-table-column label="部门" align="center" key="deptName" prop="dept.name" v-if="columns[3].visible" :show-overflow-tooltip="true" />
-                  <el-table-column label="手机号码" align="center" key="mobile" prop="mobile" v-if="columns[4].visible" width="120" />
-                  <el-table-column label="状态" key="status" v-if="columns[5].visible" align="center">
+                  <el-table-column label="用户编号" align="left" key="id" prop="id" v-if="columns[0].visible" width="120" />
+                  <el-table-column label="用户名称" align="left" key="username" prop="username" v-if="columns[1].visible" :show-overflow-tooltip="true" />
+                  <el-table-column label="用户昵称" align="left" key="nickname" prop="nickname" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+                  <el-table-column label="部门" align="left" key="deptName" prop="dept.name" v-if="columns[3].visible" :show-overflow-tooltip="true" />
+                  <el-table-column label="手机号码" align="left" key="mobile" prop="mobile" v-if="columns[4].visible" width="120" />
+                  <el-table-column label="类型" align="left" key="type" prop="type" v-if="columns[7].visible">
+                    <template v-slot="scope">
+                      <dict-tag :type="DICT_TYPE.SYSTEM_USER_TYPE" :value="scope.row.type" />
+                    </template>
+                  </el-table-column>
+                  <el-table-column label="状态" key="status" v-if="columns[5].visible" align="left" width="100">
                     <template v-slot="scope">
                       <el-switch v-model="scope.row.status" :active-value="0" :inactive-value="1" @change="handleStatusChange(scope.row)" />
                     </template>
                   </el-table-column>
-                  <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">
+                  <el-table-column label="创建时间" align="left" prop="createTime" v-if="columns[6].visible" width="160">
                     <template v-slot="scope">
                       <span>{{ parseTime(scope.row.createTime) }}</span>
                     </template>
                   </el-table-column>
-                  <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
+                  <el-table-column label="操作" align="left" width="100" class-name="small-padding fixed-width">
                     <template v-slot="scope">
                       <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                                  v-hasPermi="['system:user:update']">修改</el-button>
@@ -94,104 +105,11 @@
                             @pagination="getList"/>
       </div>
     </div>
-    <!-- 搜索工作栏 -->
-<!--    <el-row :gutter="20">-->
-<!--      &lt;!&ndash;部门数据&ndash;&gt;-->
-<!--      <el-col :span="4" :xs="24" class="gw-border-r">-->
-<!--        <div class="head-container">-->
-<!--          <el-input v-model="deptName" placeholder="请输入部门名称" clearable size="mini" prefix-icon="el-icon-search" style="margin-bottom: 20px"/>-->
-<!--        </div>-->
-<!--        <div class="head-container">-->
-<!--          <el-tree :data="deptOptions" :props="defaultProps" :expand-on-click-node="false" :filter-node-method="filterNode"-->
-<!--                   ref="tree" default-expand-all highlight-current @node-click="handleNodeClick"/>-->
-<!--        </div>-->
-<!--      </el-col>-->
-<!--      &lt;!&ndash;用户数据&ndash;&gt;-->
-<!--      <el-col :span="20" :xs="24">-->
-<!--        <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch" label-width="68px">-->
-<!--          <el-form-item label="用户名称" prop="username">-->
-<!--            <el-input v-model="queryParams.username" placeholder="请输入用户名称" clearable style="width: 240px"-->
-<!--                      @keyup.enter.native="handleQuery"/>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item label="手机号码" prop="mobile">-->
-<!--            <el-input v-model="queryParams.mobile" placeholder="请输入手机号码" clearable style="width: 240px"-->
-<!--                      @keyup.enter.native="handleQuery"/>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item label="状态" prop="status">-->
-<!--            <el-select v-model="queryParams.status" placeholder="用户状态" clearable style="width: 240px">-->
-<!--              <el-option v-for="dict in statusDictDatas" :key="parseInt(dict.value)" :label="dict.label" :value="parseInt(dict.value)"/>-->
-<!--            </el-select>-->
-<!--          </el-form-item>-->
-<!--&lt;!&ndash;          <el-form-item label="创建时间" prop="createTime">&ndash;&gt;-->
-<!--&lt;!&ndash;            <el-date-picker v-model="queryParams.createTime" style="width: 240px" value-format="yyyy-MM-dd HH:mm:ss" type="daterange"&ndash;&gt;-->
-<!--&lt;!&ndash;              range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="['00:00:00', '23:59:59']" />&ndash;&gt;-->
-<!--&lt;!&ndash;          </el-form-item>&ndash;&gt;-->
-<!--          <el-form-item>-->
-<!--            <el-button type="primary" icon="el-icon-search" @click="handleQuery">搜索</el-button>-->
-<!--            <el-button icon="el-icon-refresh" @click="resetQuery">重置</el-button>-->
-<!--          </el-form-item>-->
-<!--        </el-form>-->
-
-<!--        <el-row :gutter="10" class="mb8">-->
-<!--          <el-col :span="1.5">-->
-<!--            <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd"-->
-<!--                       v-hasPermi="['system:user:create']">新增</el-button>-->
-<!--          </el-col>-->
-<!--          <el-col :span="1.5">-->
-<!--            <el-button type="info" icon="el-icon-upload2" size="mini" @click="handleImport"-->
-<!--                       v-hasPermi="['system:user:import']">导入</el-button>-->
-<!--          </el-col>-->
-<!--          <el-col :span="1.5">-->
-<!--            <el-button plain icon="el-icon-download" size="mini" @click="handleExport" :loading="exportLoading"-->
-<!--                       v-hasPermi="['system:user:export']">导出</el-button>-->
-<!--          </el-col>-->
-<!--          <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>-->
-<!--        </el-row>-->
-
-<!--        <el-table v-loading="loading" :data="userList">-->
-<!--          <el-table-column label="用户编号" align="center" key="id" prop="id" v-if="columns[0].visible" />-->
-<!--          <el-table-column label="用户名称" align="center" key="username" prop="username" v-if="columns[1].visible" :show-overflow-tooltip="true" />-->
-<!--          <el-table-column label="用户昵称" align="center" key="nickname" prop="nickname" v-if="columns[2].visible" :show-overflow-tooltip="true" />-->
-<!--          <el-table-column label="部门" align="center" key="deptName" prop="dept.name" v-if="columns[3].visible" :show-overflow-tooltip="true" />-->
-<!--          <el-table-column label="手机号码" align="center" key="mobile" prop="mobile" v-if="columns[4].visible" width="120" />-->
-<!--          <el-table-column label="状态" key="status" v-if="columns[5].visible" align="center">-->
-<!--            <template v-slot="scope">-->
-<!--              <el-switch v-model="scope.row.status" :active-value="0" :inactive-value="1" @change="handleStatusChange(scope.row)" />-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">-->
-<!--            <template v-slot="scope">-->
-<!--              <span>{{ parseTime(scope.row.createTime) }}</span>-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">-->
-<!--            <template v-slot="scope">-->
-<!--              <el-button size="mini" type="text" @click="handleUpdate(scope.row)"-->
-<!--                         v-hasPermi="['system:user:update']">修改</el-button>-->
-<!--              <el-dropdown  @command="(command) => handleCommand(command, scope.$index, scope.row)"-->
-<!--                            v-hasPermi="['system:user:delete', 'system:user:update-password', 'system:permission:assign-user-role']">-->
-<!--                <el-button size="mini" type="text" icon="el-icon-d-arrow-right">更多</el-button>-->
-<!--                <el-dropdown-menu slot="dropdown">-->
-<!--                  <el-dropdown-item command="handleDelete" v-if="scope.row.id !== 1" size="mini"type="text"-->
-<!--                                    v-hasPermi="['system:user:delete']">删除</el-dropdown-item>-->
-<!--                  <el-dropdown-item command="handleResetPwd" size="mini" type="text" icon="el-icon-key"-->
-<!--                                    v-hasPermi="['system:user:update-password']">重置密码</el-dropdown-item>-->
-<!--                  <el-dropdown-item command="handleRole" size="mini" type="text" icon="el-icon-circle-check"-->
-<!--                                    v-hasPermi="['system:permission:assign-user-role']">分配角色</el-dropdown-item>-->
-<!--                </el-dropdown-menu>-->
-<!--              </el-dropdown>-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--        </el-table>-->
-
-<!--        <pagination v-show="total>0" :total="total" :page.sync="queryParams.pageNo" :limit.sync="queryParams.pageSize"-->
-<!--                    @pagination="getList"/>-->
-<!--      </el-col>-->
-<!--    </el-row>-->
 
     <!-- 添加或修改参数配置对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="600px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
+        <div class="gw-text-xl gw-text-black gw-font-semibold gw-mb-6">基础信息</div>
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="用户昵称" prop="nickname">
@@ -250,27 +168,77 @@
             </el-form-item>
           </el-col>
         </el-row>
-<!--        <el-row :gutter="20">-->
-<!--          <el-col :span="12">-->
-<!--            <el-form-item label="类型">-->
-<!--              <el-select v-model="form.p" multiple placeholder="请选择">-->
-<!--                <el-option-->
-<!--                  v-for="item in postOptions"-->
-<!--                  :key="item.id"-->
-<!--                  :label="item.name"-->
-<!--                  :value="item.id"-->
-<!--                ></el-option>-->
-<!--              </el-select>-->
-<!--            </el-form-item>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
-        <el-row>
-          <el-col :span="24">
-            <el-form-item label="备注">
-              <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+        <el-row :gutter="20">
+          <el-col :span="12">
+            <el-form-item label="用户类型">
+              <el-select v-model="form.type" placeholder="请选择">
+                <el-option v-for="dict in systemUserType" :key="dict.value" :label="dict.label" :value="dict.value"/>
+              </el-select>
             </el-form-item>
           </el-col>
         </el-row>
+        <div v-if="form.type">
+          <div class="gw-text-xl gw-text-black gw-font-semibold gw-mb-6">扩展信息</div>
+
+          <div v-if="form.type === 'coach'">
+            <el-row>
+              <el-form-item label="图集">
+                <imageUpload v-model="form.coachImages"/>
+              </el-form-item>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-form-item label="级别" prop="coachLevel">
+                  <el-select v-model="form.coachLevel" placeholder="请选择教练级别">
+                    <el-option v-for="dict in this.getDictDatas(DICT_TYPE.TRAINING_COACH_LEVEL)"
+                               :key="dict.value" :label="dict.label" :value="dict.value" />
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="授课单价" prop="coachPrice">
+                  <el-input v-model="form.coachPrice" placeholder="请输入授课单价" />
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+          <div v-if="form.type === 'adviser'">
+            <el-row>
+              <el-form-item label="图集">
+                <imageUpload v-model="form.adviserImages"/>
+              </el-form-item>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-form-item label="级别" prop="adviserLevel">
+                  <el-select v-model="form.adviserLevel" placeholder="请选择顾问级别" clearable>
+                    <el-option v-for="dict in this.getDictDatas(DICT_TYPE.TRAINING_ADVISER_LEVEL)"
+                               :key="dict.value" :label="dict.label" :value="dict.value"/>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+<!--          <div v-if="form.type === 'teacher'">-->
+<!--            <el-row :gutter="20">-->
+<!--              <el-col :span="12">-->
+<!--                <el-form-item label="级别" prop="coachLevel">-->
+<!--                  <el-select v-model="form.coachLevel" placeholder="请选择教练级别">-->
+<!--                    <el-option v-for="dict in this.getDictDatas(DICT_TYPE.TRAINING_COACH_LEVEL)"-->
+<!--                               :key="dict.value" :label="dict.label" :value="dict.value" />-->
+<!--                  </el-select>-->
+<!--                </el-form-item>-->
+<!--              </el-col>-->
+<!--            </el-row>-->
+<!--          </div>-->
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="备注">
+                <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -351,10 +319,11 @@ import {DICT_TYPE, getDictDatas} from "@/utils/dict";
 import {assignUserRole, listUserRoles} from "@/api/system/permission";
 import {listSimpleRoles} from "@/api/system/role";
 import {getBaseHeader} from "@/utils/request";
+import ImageUpload from '@/components/ImageUpload/index.vue'
 
 export default {
   name: "SystemUser",
-  components: { Treeselect },
+  components: { ImageUpload, Treeselect },
   data() {
     return {
       // 遮罩层
@@ -412,6 +381,7 @@ export default {
         mobile: undefined,
         status: undefined,
         deptId: undefined,
+        type: undefined,
         createTime: []
       },
       // 列信息
@@ -421,6 +391,7 @@ export default {
         { key: 2, label: `用户昵称`, visible: true },
         { key: 3, label: `部门`, visible: true },
         { key: 4, label: `手机号码`, visible: true },
+        { key: 7, label: `用户类型`, visible: true },
         { key: 5, label: `状态`, visible: true },
         { key: 6, label: `创建时间`, visible: true }
       ],
@@ -458,6 +429,7 @@ export default {
       // 数据字典
       statusDictDatas: getDictDatas(DICT_TYPE.COMMON_STATUS),
       sexDictDatas: getDictDatas(DICT_TYPE.SYSTEM_USER_SEX),
+      systemUserType: getDictDatas(DICT_TYPE.SYSTEM_USER_TYPE),
     };
   },
   watch: {
@@ -559,6 +531,7 @@ export default {
         mobile: undefined,
         email: undefined,
         sex: undefined,
+        type: undefined,
         status: "0",
         remark: undefined,
         postIds: [],
@@ -593,6 +566,12 @@ export default {
       const id = row.id;
       getUser(id).then(response => {
         this.form = response.data;
+        if(this.form.extend) {
+          let userExtend = JSON.parse(this.form.extend)
+          userExtend.map(item => {
+            this.form[item.code] = item.value
+          })
+        }
         this.open = true;
         this.title = "修改用户";
         this.form.password = "";
@@ -631,10 +610,44 @@ export default {
         this.form.roleIds = response.data;
       })
     },
+    // 整理用户的扩展属性
+    setUserExtend() {
+      let userExtend = {}
+      if(this.form.type === undefined) return
+      if(this.form.type === 'adviser') {
+        userExtend = [{
+          label: '图集',
+          code: 'adviserImages',
+          value: this.form.adviserImages
+        },{
+          label: '级别',
+          code: 'adviserLevel',
+          value: this.form.adviserLevel
+        }]
+      }
+
+      if(this.form.type === 'coach') {
+        userExtend =  [{
+          label: '图集',
+          code: 'coachImages',
+          value: this.form.coachImages
+        },{
+          label: '级别',
+          code: 'coachLevel',
+          value: this.form.coachLevel
+        },{
+          label: '授课价格',
+          code: 'coachPrice',
+          value: this.form.coachPrice
+        }]
+      }
+      this.form.extend = JSON.stringify(userExtend)
+    },
     /** 提交按钮 */
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
+          this.setUserExtend()
           if (this.form.id !== undefined) {
             updateUser(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");

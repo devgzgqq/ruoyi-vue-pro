@@ -43,22 +43,22 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="类型" align="center" prop="type" width="80">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="类型" align="left" prop="type" width="80">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_ERROR_CODE_TYPE" :value="scope.row.type" />
         </template>
       </el-table-column>
-      <el-table-column label="应用名" align="center" prop="applicationName" width="200" />
-      <el-table-column label="错误码编码" align="center" prop="code" width="120" />
-      <el-table-column label="错误码提示" align="center" prop="message" width="300" />
-      <el-table-column label="备注" align="center" prop="memo" width="200" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="应用名" align="left" prop="applicationName" width="200" />
+      <el-table-column label="错误码编码" align="left" prop="code" width="120" />
+      <el-table-column label="错误码提示" align="left" prop="message" width="300" />
+      <el-table-column label="备注" align="left" prop="memo" width="200" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:error-code:update']">修改</el-button>

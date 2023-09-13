@@ -6,12 +6,12 @@
       <el-form-item label="姓名" prop="name">
         <el-input v-model="queryParams.name" placeholder="请输入姓名" clearable @keyup.enter.native="handleQuery"/>
       </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="请选择状态">
-          <el-option v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"
-                       :key="dict.value" :label="dict.label" :value="dict.value"/>
-        </el-select>
-      </el-form-item>
+<!--      <el-form-item label="状态" prop="status">-->
+<!--        <el-select v-model="queryParams.status" placeholder="请选择状态">-->
+<!--          <el-option v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"-->
+<!--                       :key="dict.value" :label="dict.label" :value="dict.value"/>-->
+<!--        </el-select>-->
+<!--      </el-form-item>-->
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" @click="resetQuery">重置</el-button>
@@ -33,29 +33,43 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" width="80px" />
-      <el-table-column label="门店" align="center" prop="storeId" />
-      <el-table-column label="教练" align="center" prop="coachId" />
-      <el-table-column label="会员" align="center" prop="memberId" />
-      <el-table-column label="姓名" align="center" prop="name" />
-      <el-table-column label="头像" align="center" prop="avatar" />
-      <el-table-column label="状态" align="center" prop="status">
-        <template v-slot="scope">
-          <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.status" />
-        </template>
-      </el-table-column>
-      <el-table-column label="排序" align="center" prop="sort" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="编号" align="left" prop="id" width="80px" />
+      <el-table-column label="姓名" align="left" prop="name" />
+      <el-table-column label="所属门店" align="left" prop="storeId" />
+      <el-table-column label="所属教练" align="left" prop="coachId" />
+      <el-table-column label="所属会员" align="left" prop="memberId" />
+<!--      <el-table-column label="头像" align="left" prop="avatar" />-->
+<!--      <el-table-column label="状态" align="left" prop="status">-->
+<!--        <template v-slot="scope">-->
+<!--          <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.status" />-->
+<!--        </template>-->
+<!--      </el-table-column>-->
+<!--      <el-table-column label="排序" align="left" prop="sort" />-->
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width" width="100">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['training:student:update']">修改</el-button>
-          <el-button size="mini"type="text" @click="handleDelete(scope.row)"
-                     v-hasPermi="['training:student:delete']">删除</el-button>
+<!--          <el-button size="mini"type="text" @click="handleDelete(scope.row)"-->
+<!--                     v-hasPermi="['training:student:delete']">删除</el-button>-->
+          <el-dropdown  @command="(command) => handleCommand(command, scope.$index, scope.row)"
+                        v-hasPermi="['training:student:delete', 'training:student:update']">
+            <el-button size="mini" type="text">更多</el-button>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="handleDelete" size="mini"type="text"
+                                v-hasPermi="['training:student:delete']">删除</el-dropdown-item>
+              <el-dropdown-item command="handleSetStore" size="mini" type="text"
+                                v-hasPermi="['training:student:update']">设置门店</el-dropdown-item>
+              <el-dropdown-item command="handleSetCoach" size="mini" type="text"
+                                v-hasPermi="['training:student:update']">设置教练</el-dropdown-item>
+              <el-dropdown-item command="handleSetMember" size="mini" type="text"
+                                v-hasPermi="['training:student:update']">设置会员</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
@@ -66,30 +80,30 @@
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="500px" v-dialogDrag append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
-        <el-form-item label="姓名" prop="name">
-          <el-input v-model="form.name" placeholder="请输入姓名" />
-        </el-form-item>
-        <el-form-item label="门店ID" prop="storeId">
-          <el-input v-model="form.storeId" placeholder="请输入门店ID" />
-        </el-form-item>
-        <el-form-item label="教练ID" prop="coachId">
-          <el-input v-model="form.coachId" placeholder="请输入教练ID" />
-        </el-form-item>
-        <el-form-item label="会员ID" prop="memberId">
-          <el-input v-model="form.memberId" placeholder="请输入会员ID" />
-        </el-form-item>
         <el-form-item label="头像">
           <imageUpload v-model="form.avatar"/>
         </el-form-item>
-        <el-form-item label="状态" prop="status">
-          <el-radio-group v-model="form.status">
-            <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"
-                      :key="dict.value" :label="dict.value">{{dict.label}}</el-radio>
-          </el-radio-group>
+        <el-form-item label="姓名" prop="name">
+          <el-input v-model="form.name" placeholder="请输入姓名" />
         </el-form-item>
-        <el-form-item label="排序" prop="sort">
-          <el-input v-model="form.sort" placeholder="请输入排序" />
-        </el-form-item>
+<!--        <el-form-item label="门店ID" prop="storeId">-->
+<!--          <el-input v-model="form.storeId" placeholder="请输入门店ID" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="教练ID" prop="coachId">-->
+<!--          <el-input v-model="form.coachId" placeholder="请输入教练ID" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="会员ID" prop="memberId">-->
+<!--          <el-input v-model="form.memberId" placeholder="请输入会员ID" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="状态" prop="status">-->
+<!--          <el-radio-group v-model="form.status">-->
+<!--            <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"-->
+<!--                      :key="dict.value" :label="dict.value">{{dict.label}}</el-radio>-->
+<!--          </el-radio-group>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="排序" prop="sort">-->
+<!--          <el-input-number v-model="form.sort" :min="0" placeholder="请输入排序" />-->
+<!--        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -128,13 +142,8 @@ export default {
       queryParams: {
         pageNo: 1,
         pageSize: 10,
-        storeId: null,
-        coachId: null,
-        memberId: null,
         name: null,
         avatar: null,
-        status: null,
-        sort: null,
         createTime: [],
       },
       // 表单参数
@@ -149,6 +158,33 @@ export default {
     this.getList();
   },
   methods: {
+    // 更多操作
+    handleCommand(command, index, row) {
+      switch (command) {
+        case 'handleDelete':
+          this.handleDelete(row);//红号变更
+          break;
+        case 'handleSetStore':
+          this.handleSetStore(row);
+          break;
+        case 'handleSetCoach':
+          this.handleSetCoach(row);
+          break;
+        case 'handleSetMember':
+          this.handleSetMember(row)
+        default:
+          break;
+      }
+    },
+    handleSetStore() {
+
+    },
+    handleSetCoach() {
+
+    },
+    handleSetMember() {
+
+    },
     /** 查询列表 */
     getList() {
       this.loading = true;
@@ -168,13 +204,13 @@ export default {
     reset() {
       this.form = {
         id: undefined,
-        storeId: undefined,
-        coachId: undefined,
-        memberId: undefined,
+        // storeId: undefined,
+        // coachId: undefined,
+        // memberId: undefined,
         name: undefined,
         avatar: undefined,
         status: undefined,
-        sort: undefined,
+        sort: 0,
       };
       this.resetForm("form");
     },

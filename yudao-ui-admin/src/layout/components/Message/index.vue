@@ -14,7 +14,7 @@
             <span>{{ parseTime(scope.row.createTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="类型" align="center" prop="templateType" width="100">
+        <el-table-column label="类型" align="left" prop="templateType" width="100">
           <template v-slot="scope">
             <dict-tag :type="DICT_TYPE.SYSTEM_NOTIFY_TEMPLATE_TYPE" :value="scope.row.templateType" />
           </template>

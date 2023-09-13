@@ -28,12 +28,12 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="文件名" :show-overflow-tooltip="true" align="center" min-width="200px" prop="name"/>
-      <el-table-column label="文件路径" :show-overflow-tooltip="true" align="center" min-width="250px" prop="path"/>
-      <el-table-column label="文件 URL" :show-overflow-tooltip="true" align="center" min-width="300px" prop="url"/>
-      <el-table-column label="文件大小" align="center" prop="size" min-width="120px" :formatter="sizeFormat"/>
-      <el-table-column label="文件类型" :show-overflow-tooltip="true" align="center" prop="type" width="180px"/>
-      <el-table-column label="文件内容" align="center" prop="content" min-width="150px">
+      <el-table-column label="文件名" :show-overflow-tooltip="true" align="left" min-width="200px" prop="name"/>
+      <el-table-column label="文件路径" :show-overflow-tooltip="true" align="left" min-width="250px" prop="path"/>
+      <el-table-column label="文件 URL" :show-overflow-tooltip="true" align="left" min-width="300px" prop="url"/>
+      <el-table-column label="文件大小" align="left" prop="size" min-width="120px" :formatter="sizeFormat"/>
+      <el-table-column label="文件类型" :show-overflow-tooltip="true" align="left" prop="type" width="180px"/>
+      <el-table-column label="文件内容" align="left" prop="content" min-width="150px">
         <template v-slot="scope">
           <image-preview v-if="scope.row.type&&scope.row.type.indexOf('image/') === 0" :src="scope.row.url"
                          :width="'100px'"></image-preview>
@@ -47,12 +47,12 @@
           </i>
         </template>
       </el-table-column>
-      <el-table-column label="上传时间" align="center" prop="createTime" min-width="170px">
+      <el-table-column label="上传时间" align="left" prop="createTime" min-width="170px">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" min-width="100px">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width" min-width="100px">
         <template v-slot="scope">
           <el-button size="mini"type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['infra:file:delete']">删除

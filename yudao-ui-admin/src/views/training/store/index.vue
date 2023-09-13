@@ -45,30 +45,30 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="名称" align="center" prop="name" />
-      <el-table-column label="手机号" align="center" prop="mobile" />
-      <el-table-column label="地址" align="center" prop="address" />
-      <el-table-column label="经度" align="center" prop="longitude" />
-      <el-table-column label="纬度" align="center" prop="latitude" />
-      <el-table-column label="营业时间" align="center" prop="businessHours" />
-      <el-table-column label="排序" align="center" prop="sort" />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="名称" align="left" prop="name" />
+      <el-table-column label="手机号" align="left" prop="mobile" />
+      <el-table-column label="地址" align="left" prop="address" />
+      <el-table-column label="经度" align="left" prop="longitude" />
+      <el-table-column label="纬度" align="left" prop="latitude" />
+      <el-table-column label="营业时间" align="left" prop="businessHours" />
+      <el-table-column label="排序" align="left" prop="sort" />
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="是否推荐" align="center" prop="recommend">
+      <el-table-column label="是否推荐" align="left" prop="recommend">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.recommend" />
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['training:store:update']">修改</el-button>

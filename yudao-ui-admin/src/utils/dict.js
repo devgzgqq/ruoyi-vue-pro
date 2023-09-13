@@ -28,6 +28,7 @@ export const DICT_TYPE = {
   SYSTEM_MAIL_SEND_STATUS: 'system_mail_send_status',
   SYSTEM_NOTIFY_TEMPLATE_TYPE: 'system_notify_template_type',
   SYSTEM_CLASS_GROUP: 'system_class_group',
+  SYSTEM_USER_TYPE: 'system_user_type',
 
   // ========== INFRA 模块 ==========
   INFRA_BOOLEAN_STRING: 'infra_boolean_string',
@@ -86,6 +87,7 @@ export const DICT_TYPE = {
   // ========== TRAINING - COACH 模块 ==========
   TRAINING_COACH_LEVEL: 'training_coach_level', // 教练级别
   TRAINING_COACH_TAGS: 'training_coach_tags', // 教练标签
+  TRAINING_ADVISER_LEVEL: 'training_adviser_level', // 顾问级别
 
   // ========== OPERATION - SALESPERSON 模块 ==========
   OPERATION_SALESPERSON_LEVEL: 'operation_salesperson_level', // 业务员级别

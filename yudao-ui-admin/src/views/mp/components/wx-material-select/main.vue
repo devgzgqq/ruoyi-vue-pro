@@ -26,19 +26,19 @@
   <div v-else-if="objData.type === 'voice'">
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="mediaId" />
-      <el-table-column label="文件名" align="center" prop="name" />
-      <el-table-column label="语音" align="center">
+      <el-table-column label="编号" align="left" prop="mediaId" />
+      <el-table-column label="文件名" align="left" prop="name" />
+      <el-table-column label="语音" align="left">
         <template v-slot="scope">
           <wx-voice-player :url="scope.row.url" />
         </template>
       </el-table-column>
-      <el-table-column label="上传时间" align="center" prop="createTime" width="180">
+      <el-table-column label="上传时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" fixed="right" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" fixed="right" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-circle-plus"
                      @click="selectMaterial(scope.row)">选择</el-button>
@@ -52,21 +52,21 @@
   <div v-else-if="objData.type === 'video'">
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="mediaId" />
-      <el-table-column label="文件名" align="center" prop="name" />
-      <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="介绍" align="center" prop="introduction" />
-      <el-table-column label="视频" align="center">
+      <el-table-column label="编号" align="left" prop="mediaId" />
+      <el-table-column label="文件名" align="left" prop="name" />
+      <el-table-column label="标题" align="left" prop="title" />
+      <el-table-column label="介绍" align="left" prop="introduction" />
+      <el-table-column label="视频" align="left">
         <template v-slot="scope">
           <wx-video-player :url="scope.row.url" />
         </template>
       </el-table-column>
-      <el-table-column label="上传时间" align="center" prop="createTime" width="180">
+      <el-table-column label="上传时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" fixed="right" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" fixed="right" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-circle-plus"
                      @click="selectMaterial(scope.row)">选择</el-button>

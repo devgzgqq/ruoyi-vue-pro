@@ -54,37 +54,37 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="退款编号" align="center" prop="no" />
-      <el-table-column label="订单编号" align="center" prop="orderNo" /> <!-- TODO 芋艿：未来要加个订单链接 -->
-      <el-table-column label="商品信息" align="center" prop="spuName" width="auto" min-width="300">
+      <el-table-column label="退款编号" align="left" prop="no" />
+      <el-table-column label="订单编号" align="left" prop="orderNo" /> <!-- TODO 芋艿：未来要加个订单链接 -->
+      <el-table-column label="商品信息" align="left" prop="spuName" width="auto" min-width="300">
         <!-- TODO @小红：样式不太对，辛苦改改 -->
 <!--        <div v-slot="{ row }" class="goods-info">-->
 <!--          <img :src="row.picUrl"/>-->
 <!--          <span class="ellipsis-2" :title="row.name">{{row.name}}</span>-->
 <!--        </div>-->
       </el-table-column>
-      <el-table-column label="订单金额" align="center" prop="refundPrice">
+      <el-table-column label="订单金额" align="left" prop="refundPrice">
         <template v-slot="scope">
           <span>￥{{ (scope.row.refundPrice / 100.0).toFixed(2) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="买家" align="center" prop="user.nickname" /> <!-- TODO 芋艿：未来要加个会员链接 -->
-      <el-table-column label="申请时间" align="center" prop="createTime" width="180">
+      <el-table-column label="买家" align="left" prop="user.nickname" /> <!-- TODO 芋艿：未来要加个会员链接 -->
+      <el-table-column label="申请时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="售后状态" align="center">
+      <el-table-column label="售后状态" align="left">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.TRADE_AFTER_SALE_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="售后方式" align="center">
+      <el-table-column label="售后方式" align="left">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.TRADE_AFTER_SALE_WAY" :value="scope.row.way" />
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-thumb"
                      >处理退款</el-button>

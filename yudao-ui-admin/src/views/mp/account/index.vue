@@ -26,29 +26,29 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="名称" align="center" prop="name"/>
-      <el-table-column label="微信号" align="center" prop="account" width="180"/>
-      <el-table-column label="appId" align="center" prop="appId" width="180"/>
-<!--      <el-table-column label="appSecret" align="center" prop="appSecret" width="180"/>-->
-<!--      <el-table-column label="token" align="center" prop="token"/>-->
-<!--      <el-table-column label="消息加解密密钥" align="center" prop="aesKey"/>-->
-      <el-table-column label="服务器地址(URL)" align="center" prop="appId" width="360">
+      <el-table-column label="名称" align="left" prop="name"/>
+      <el-table-column label="微信号" align="left" prop="account" width="180"/>
+      <el-table-column label="appId" align="left" prop="appId" width="180"/>
+<!--      <el-table-column label="appSecret" align="left" prop="appSecret" width="180"/>-->
+<!--      <el-table-column label="token" align="left" prop="token"/>-->
+<!--      <el-table-column label="消息加解密密钥" align="left" prop="aesKey"/>-->
+      <el-table-column label="服务器地址(URL)" align="left" prop="appId" width="360">
         <template v-slot="scope">
           {{ 'http://服务端地址/mp/open/' + scope.row.appId }}
         </template>
       </el-table-column>
-      <el-table-column label="二维码" align="center" prop="qrCodeUrl">
+      <el-table-column label="二维码" align="left" prop="qrCodeUrl">
         <template v-slot="scope">
           <img v-if="scope.row.qrCodeUrl" :src="scope.row.qrCodeUrl" alt="二维码" style="height: 100px;" />
         </template>
       </el-table-column>
-      <el-table-column label="备注" align="center" prop="remark"/>
-<!--      <el-table-column label="创建时间" align="center" prop="createTime" width="180">-->
+      <el-table-column label="备注" align="left" prop="remark"/>
+<!--      <el-table-column label="创建时间" align="left" prop="createTime" width="180">-->
 <!--        <template v-slot="scope">-->
 <!--          <span>{{ parseTime(scope.row.createTime) }}</span>-->
 <!--        </template>-->
 <!--      </el-table-column>-->
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['mp:account:update']">修改

@@ -43,38 +43,38 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="租户编号" align="center" prop="id" />
-      <el-table-column label="租户名" align="center" prop="name" />
-      <el-table-column label="租户套餐" align="center" prop="packageId">
+      <el-table-column label="租户编号" align="left" prop="id" />
+      <el-table-column label="租户名" align="left" prop="name" />
+      <el-table-column label="租户套餐" align="left" prop="packageId">
         <template v-slot="scope">
           <el-tag v-if="scope.row.packageId === 0" type="danger">系统租户</el-tag>
           <el-tag v-else> {{getPackageName(scope.row.packageId)}} </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="联系人" align="center" prop="contactName" />
-      <el-table-column label="联系手机" align="center" prop="contactMobile" />
-      <el-table-column label="账号额度" align="center" prop="accountCount">
+      <el-table-column label="联系人" align="left" prop="contactName" />
+      <el-table-column label="联系手机" align="left" prop="contactMobile" />
+      <el-table-column label="账号额度" align="left" prop="accountCount">
         <template v-slot="scope">
           <el-tag> {{scope.row.accountCount}} </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="过期时间" align="center" prop="expireTime" width="180">
+      <el-table-column label="过期时间" align="left" prop="expireTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.expireTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="绑定域名" align="center" prop="domain" width="180" />
-      <el-table-column label="租户状态" align="center" prop="status">
+      <el-table-column label="绑定域名" align="left" prop="domain" width="180" />
+      <el-table-column label="租户状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:tenant:update']">修改</el-button>

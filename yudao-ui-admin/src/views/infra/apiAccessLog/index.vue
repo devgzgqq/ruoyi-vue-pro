@@ -45,32 +45,32 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="日志编号" align="center" prop="id" />
-      <el-table-column label="用户编号" align="center" prop="userId" />
-      <el-table-column label="用户类型" align="center" prop="userType">
+      <el-table-column label="日志编号" align="left" prop="id" />
+      <el-table-column label="用户编号" align="left" prop="userId" />
+      <el-table-column label="用户类型" align="left" prop="userType">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.USER_TYPE" :value="scope.row.userType"/>
         </template>
       </el-table-column>>
-      <el-table-column label="应用名" align="center" prop="applicationName" />
-      <el-table-column label="请求方法名" align="center" prop="requestMethod" />
-      <el-table-column label="请求地址" align="center" prop="requestUrl" width="250" />
-      <el-table-column label="请求时间" align="center" prop="beginTime" width="180">
+      <el-table-column label="应用名" align="left" prop="applicationName" />
+      <el-table-column label="请求方法名" align="left" prop="requestMethod" />
+      <el-table-column label="请求地址" align="left" prop="requestUrl" width="250" />
+      <el-table-column label="请求时间" align="left" prop="beginTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.beginTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="执行时长" align="center" prop="startTime">
+      <el-table-column label="执行时长" align="left" prop="startTime">
         <template v-slot="scope">
           <span>{{ scope.row.duration }}  ms</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作结果" align="center" prop="status">
+      <el-table-column label="操作结果" align="left" prop="status">
         <template v-slot="scope">
           <span>{{ scope.row.resultCode === 0 ? '成功' : '失败(' + scope.row.resultMsg + ')' }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-view" @click="handleView(scope.row,scope.index)"
                      v-hasPermi="['infra:api-access-log:query']">详细</el-button>

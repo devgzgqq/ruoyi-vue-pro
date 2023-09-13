@@ -58,18 +58,18 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id"/>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="编号" align="left" prop="id"/>
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="支付金额" align="center" prop="payPrice" width="100">
+      <el-table-column label="支付金额" align="left" prop="payPrice" width="100">
         <template v-slot="scope" class="">
           ￥{{ (scope.row.payPrice / 100.0).toFixed(2) }}
         </template>
       </el-table-column>
-      <el-table-column label="退款金额" align="center" prop="refundPrice" width="100">
+      <el-table-column label="退款金额" align="left" prop="refundPrice" width="100">
         <template v-slot="scope">
           ￥{{ (scope.row.refundPrice / 100.0).toFixed(2) }}
         </template>
@@ -97,27 +97,27 @@
           </p>
         </template>
       </el-table-column>
-      <el-table-column label="退款状态" align="center" prop="status">
+      <el-table-column label="退款状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PAY_REFUND_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="退款渠道" align="center" width="140">
+      <el-table-column label="退款渠道" align="left" width="140">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PAY_CHANNEL_CODE" :value="scope.row.channelCode" />
         </template>
       </el-table-column>
-      <el-table-column label="成功时间" align="center" prop="successTime" width="180">
+      <el-table-column label="成功时间" align="left" prop="successTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.successTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="支付应用" align="center" prop="successTime" width="100">
+      <el-table-column label="支付应用" align="left" prop="successTime" width="100">
         <template v-slot="scope">
           <span>{{ scope.row.appName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" fixed="right" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" fixed="right" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-search" @click="handleQueryDetails(scope.row)"
                      v-hasPermi="['pay:order:query']">查看详情

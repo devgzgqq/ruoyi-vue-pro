@@ -68,7 +68,7 @@
       <el-tab-pane label="全部" name="all">
         <!-- 列表 -->
         <el-table v-loading="loading" :data="list">
-          <el-table-column label="商品信息" align="center" width="260">
+          <el-table-column label="商品信息" align="left" width="260">
             <template v-slot="scope">
               <div class="product-info">
                 <img v-if="scope.row.picUrls" :src="scope.row.picUrls[0]" alt="分类图片" class="img-height" />
@@ -77,21 +77,21 @@
             </template>
             <!-- TODO 前端优化：可以有个 + 号，点击后，展示每个 sku -->
           </el-table-column>
-          <el-table-column label="价格" align="center" prop="marketPrice" :formatter="formatPrice"/>
-          <el-table-column label="库存" align="center" prop="totalStock"/>
-          <el-table-column label="销量" align="center" prop="salesCount"/>
-          <el-table-column label="排序" align="center" prop="sort"/>
-          <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+          <el-table-column label="价格" align="left" prop="marketPrice" :formatter="formatPrice"/>
+          <el-table-column label="库存" align="left" prop="totalStock"/>
+          <el-table-column label="销量" align="left" prop="salesCount"/>
+          <el-table-column label="排序" align="left" prop="sort"/>
+          <el-table-column label="创建时间" align="left" prop="createTime" width="180">
             <template v-slot="scope">
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="状态" align="center" prop="status">
+          <el-table-column label="状态" align="left" prop="status">
             <template v-slot="scope">
               <dict-tag :type="DICT_TYPE.PRODUCT_SPU_STATUS" :value="scope.row.status"/>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+          <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
             <template v-slot="scope">
               <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                          v-hasPermi="['product:spu:update']">修改</el-button>
@@ -106,7 +106,7 @@
       <el-tab-pane label="销售中" name="on">
         <!-- 列表 -->
         <el-table v-loading="loading" :data="list">
-          <el-table-column label="商品信息" align="center" width="260">
+          <el-table-column label="商品信息" align="left" width="260">
             <template v-slot="scope">
               <div class="product-info">
                 <img v-if="scope.row.picUrls" :src="scope.row.picUrls[0]" alt="分类图片" class="img-height"/>
@@ -114,21 +114,21 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column label="价格" align="center" prop="marketPrice" :formatter="formatPrice"/>
-          <el-table-column label="库存" align="center" prop="totalStock"/>
-          <el-table-column label="销量" align="center" prop="salesCount"/>
-          <el-table-column label="排序" align="center" prop="sort"/>
-          <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+          <el-table-column label="价格" align="left" prop="marketPrice" :formatter="formatPrice"/>
+          <el-table-column label="库存" align="left" prop="totalStock"/>
+          <el-table-column label="销量" align="left" prop="salesCount"/>
+          <el-table-column label="排序" align="left" prop="sort"/>
+          <el-table-column label="创建时间" align="left" prop="createTime" width="180">
             <template v-slot="scope">
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="状态" align="center" prop="status">
+          <el-table-column label="状态" align="left" prop="status">
             <template v-slot="scope">
               <dict-tag :type="DICT_TYPE.PRODUCT_SPU_STATUS" :value="scope.row.status"/>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+          <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
             <template v-slot="scope">
               <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                          v-hasPermi="['product:spu:update']">修改</el-button>
@@ -143,7 +143,7 @@
       <el-tab-pane label="仓库中" name="off">
         <!-- 列表 -->
         <el-table v-loading="loading" :data="list">
-          <el-table-column label="商品信息" align="center" width="260">
+          <el-table-column label="商品信息" align="left" width="260">
             <template v-slot="scope">
               <div class="product-info">
                 <img v-if="scope.row.picUrls" :src="scope.row.picUrls[0]" alt="分类图片" class="img-height"/>
@@ -151,21 +151,21 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column label="价格" align="center" prop="marketPrice" :formatter="formatPrice"/>
-          <el-table-column label="库存" align="center" prop="totalStock"/>
-          <el-table-column label="销量" align="center" prop="salesCount"/>
-          <el-table-column label="排序" align="center" prop="sort"/>
-          <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+          <el-table-column label="价格" align="left" prop="marketPrice" :formatter="formatPrice"/>
+          <el-table-column label="库存" align="left" prop="totalStock"/>
+          <el-table-column label="销量" align="left" prop="salesCount"/>
+          <el-table-column label="排序" align="left" prop="sort"/>
+          <el-table-column label="创建时间" align="left" prop="createTime" width="180">
             <template v-slot="scope">
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="状态" align="center" prop="status">
+          <el-table-column label="状态" align="left" prop="status">
             <template v-slot="scope">
               <dict-tag :type="DICT_TYPE.PRODUCT_SPU_STATUS" :value="scope.row.status"/>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+          <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
             <template v-slot="scope">
               <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                          v-hasPermi="['product:spu:update']">修改</el-button>
@@ -180,7 +180,7 @@
       <el-tab-pane label="预警中" name="remind">
         <!-- 列表 -->
         <el-table v-loading="loading" :data="list">
-          <el-table-column label="商品信息" align="center" width="260">
+          <el-table-column label="商品信息" align="left" width="260">
             <template v-slot="scope">
               <div class="product-info">
                 <img v-if="scope.row.picUrls" :src="scope.row.picUrls[0]" alt="分类图片" class="img-height"/>
@@ -188,21 +188,21 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column label="价格" align="center" prop="marketPrice" :formatter="formatPrice"/>
-          <el-table-column label="库存" align="center" prop="totalStock"/>
-          <el-table-column label="销量" align="center" prop="salesCount"/>
-          <el-table-column label="排序" align="center" prop="sort"/>
-          <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+          <el-table-column label="价格" align="left" prop="marketPrice" :formatter="formatPrice"/>
+          <el-table-column label="库存" align="left" prop="totalStock"/>
+          <el-table-column label="销量" align="left" prop="salesCount"/>
+          <el-table-column label="排序" align="left" prop="sort"/>
+          <el-table-column label="创建时间" align="left" prop="createTime" width="180">
             <template v-slot="scope">
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="状态" align="center" prop="status">
+          <el-table-column label="状态" align="left" prop="status">
             <template v-slot="scope">
               <dict-tag :type="DICT_TYPE.PRODUCT_SPU_STATUS" :value="scope.row.status"/>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+          <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
             <template v-slot="scope">
               <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                          v-hasPermi="['product:spu:update']">修改</el-button>

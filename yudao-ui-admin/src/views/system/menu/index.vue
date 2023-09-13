@@ -32,7 +32,7 @@
     <el-table v-if="refreshTable" v-loading="loading" :data="menuList" row-key="id" :default-expand-all="isExpandAll"
               :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
       <el-table-column prop="name" label="菜单名称" :show-overflow-tooltip="true" width="250"></el-table-column>
-      <el-table-column prop="icon" label="图标" align="center" width="100">
+      <el-table-column prop="icon" label="图标" align="left" width="100">
         <template v-slot="scope">
           <svg-icon :icon-class="scope.row.icon" />
         </template>
@@ -46,7 +46,7 @@
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:menu:update']">修改</el-button>

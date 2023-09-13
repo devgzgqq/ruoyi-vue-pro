@@ -3,21 +3,21 @@
     <!-- 列表弹窗 -->
     <el-dialog title="任务分配规则" :visible.sync="visible" width="800px" append-to-body>
       <el-table v-loading="loading" :data="list">
-        <el-table-column label="任务名" align="center" prop="taskDefinitionName" width="120" fixed />
-        <el-table-column label="任务标识" align="center" prop="taskDefinitionKey" width="120" show-tooltip-when-overflow />
-        <el-table-column label="规则类型" align="center" prop="type" width="120">
+        <el-table-column label="任务名" align="left" prop="taskDefinitionName" width="120" fixed />
+        <el-table-column label="任务标识" align="left" prop="taskDefinitionKey" width="120" show-tooltip-when-overflow />
+        <el-table-column label="规则类型" align="left" prop="type" width="120">
           <template v-slot="scope">
             <dict-tag :type="DICT_TYPE.BPM_TASK_ASSIGN_RULE_TYPE" :value="scope.row.type" />
           </template>
         </el-table-column>
-        <el-table-column label="规则范围" align="center" prop="options" width="440px">
+        <el-table-column label="规则范围" align="left" prop="options" width="440px">
           <template v-slot="scope">
             <el-tag size="medium" v-if="scope.row.options" :key="option" v-for="option in scope.row.options">
               {{ getAssignRuleOptionName(scope.row.type, option) }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column v-if="modelId" label="操作" align="center" width="80" fixed="right">
+        <el-table-column v-if="modelId" label="操作" align="left" width="80" fixed="right">
           <template v-slot="scope">
             <el-button size="mini" type="text" @click="handleUpdateTaskAssignRule(scope.row)"
                        v-hasPermi="['bpm:task-assign-rule:update']">修改</el-button>

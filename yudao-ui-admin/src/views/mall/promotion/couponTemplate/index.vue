@@ -43,28 +43,28 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="优惠券名称" align="center" prop="name" />
-      <el-table-column label="优惠券类型" align="center" prop="discountType">
+      <el-table-column label="优惠券名称" align="left" prop="name" />
+      <el-table-column label="优惠券类型" align="left" prop="discountType">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PROMOTION_DISCOUNT_TYPE" :value="scope.row.discountType" />
         </template>
       </el-table-column>
-      <el-table-column label="优惠金额 / 折扣" align="center" prop="discount" :formatter="discountFormat" />
-      <el-table-column label="发放数量" align="center" prop="totalCount" />
-      <el-table-column label="剩余数量" align="center" prop="totalCount" :formatter="row => (row.totalCount - row.takeCount)" />
-      <el-table-column label="领取上限" align="center" prop="takeLimitCount" :formatter="takeLimitCountFormat" />
-      <el-table-column label="有效期限" align="center" prop="validityType" width="180" :formatter="validityTypeFormat" />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="优惠金额 / 折扣" align="left" prop="discount" :formatter="discountFormat" />
+      <el-table-column label="发放数量" align="left" prop="totalCount" />
+      <el-table-column label="剩余数量" align="left" prop="totalCount" :formatter="row => (row.totalCount - row.takeCount)" />
+      <el-table-column label="领取上限" align="left" prop="takeLimitCount" :formatter="takeLimitCountFormat" />
+      <el-table-column label="有效期限" align="left" prop="validityType" width="180" :formatter="validityTypeFormat" />
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <el-switch v-model="scope.row.status" :active-value="0" :inactive-value="1" @change="handleStatusChange(scope.row)"/>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['promotion:coupon-template:update']">修改</el-button>

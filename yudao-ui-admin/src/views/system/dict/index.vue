@@ -35,27 +35,27 @@
     </el-row>
 
     <el-table v-loading="loading" :data="typeList">
-      <el-table-column label="字典编号" align="center" prop="id" />
-      <el-table-column label="字典名称" align="center" prop="name" :show-overflow-tooltip="true" />
-      <el-table-column label="字典类型" align="center" :show-overflow-tooltip="true">
+      <el-table-column label="字典编号" align="left" prop="id" />
+      <el-table-column label="字典名称" align="left" prop="name" :show-overflow-tooltip="true" />
+      <el-table-column label="字典类型" align="left" :show-overflow-tooltip="true">
         <template v-slot="scope">
           <router-link :to="'/dict/type/data/' + scope.row.id" class="link-type">
             <span>{{ scope.row.type }}</span>
           </router-link>
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="备注" align="center" prop="remark" :show-overflow-tooltip="true" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="备注" align="left" prop="remark" :show-overflow-tooltip="true" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:dict:update']">修改</el-button>

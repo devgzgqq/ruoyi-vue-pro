@@ -33,25 +33,25 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="配置名" align="center" prop="name" />
-      <el-table-column label="存储器" align="center" prop="storage">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="配置名" align="left" prop="name" />
+      <el-table-column label="存储器" align="left" prop="storage">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_FILE_STORAGE" :value="scope.row.storage" />
         </template>
       </el-table-column>
-      <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="主配置" align="center" prop="primary">
+      <el-table-column label="备注" align="left" prop="remark" />
+      <el-table-column label="主配置" align="left" prop="primary">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.master" />
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="240">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width" width="240">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['infra:file-config:update']">修改</el-button>

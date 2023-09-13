@@ -10,16 +10,16 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="主键编号" align="center" prop="id" />
-      <el-table-column label="数据源名称" align="center" prop="name" />
-      <el-table-column label="数据源连接" align="center" prop="url" />
-      <el-table-column label="用户名" align="center" prop="username" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="主键编号" align="left" prop="id" />
+      <el-table-column label="数据源名称" align="left" prop="name" />
+      <el-table-column label="数据源连接" align="left" prop="url" />
+      <el-table-column label="用户名" align="left" prop="username" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['infra:data-source-config:update']">修改</el-button>

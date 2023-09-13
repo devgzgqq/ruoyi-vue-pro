@@ -33,21 +33,21 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="tableList">
-      <el-table-column label="数据源" align="center" :formatter="dataSourceConfigNameFormat"/>
-      <el-table-column label="表名称" align="center" prop="tableName"/>
-      <el-table-column label="表描述" align="center" prop="tableComment" :show-overflow-tooltip="true"/>
-      <el-table-column label="实体" align="center" prop="className"/>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="数据源" align="left" :formatter="dataSourceConfigNameFormat"/>
+      <el-table-column label="表名称" align="left" prop="tableName"/>
+      <el-table-column label="表描述" align="left" prop="tableComment" :show-overflow-tooltip="true"/>
+      <el-table-column label="实体" align="left" prop="className"/>
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="更新时间" align="center" prop="createTime" width="180">
+      <el-table-column label="更新时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.updateTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="300px" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" width="300px" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button type="text" size="small" icon="el-icon-view" @click="handlePreview(scope.row)" v-hasPermi="['infra:codegen:preview']">预览</el-button>
           <el-button type="text" size="small" icon="el-icon-edit" @click="handleEditTable(scope.row)" v-hasPermi="['infra:codegen:update']">编辑</el-button>

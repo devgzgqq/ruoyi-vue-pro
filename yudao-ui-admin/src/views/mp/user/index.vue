@@ -33,29 +33,29 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="用户标识" align="center" prop="openid" width="260" />
-      <el-table-column label="昵称" align="center" prop="nickname" />
-      <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="标签" align="center" prop="tagIds" width="200">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="用户标识" align="left" prop="openid" width="260" />
+      <el-table-column label="昵称" align="left" prop="nickname" />
+      <el-table-column label="备注" align="left" prop="remark" />
+      <el-table-column label="标签" align="left" prop="tagIds" width="200">
         <template v-slot="scope">
           <span v-for="(tagId, index) in scope.row.tagIds" :key="index">
             <el-tag>{{ tags.find(tag => tag.tagId === tagId)?.name }} </el-tag>&nbsp;
           </span>
         </template>
       </el-table-column>
-      <el-table-column label="订阅状态" align="center" prop="subscribeStatus">
+      <el-table-column label="订阅状态" align="left" prop="subscribeStatus">
         <template v-slot="scope">
           <el-tag v-if="scope.row.subscribeStatus === 0" type="success">已订阅</el-tag>
           <el-tag v-else type="danger">未订阅</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="订阅时间" align="center" prop="subscribeTime" width="180">
+      <el-table-column label="订阅时间" align="left" prop="subscribeTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.subscribeTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['mp:user:update']">修改</el-button>

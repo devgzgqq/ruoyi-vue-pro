@@ -33,24 +33,24 @@
     </el-row>
 
     <el-table v-loading="loading" :data="dataList" >
-      <el-table-column label="字典编码" align="center" prop="id" />
-      <el-table-column label="字典标签" align="center" prop="label" />
-      <el-table-column label="字典键值" align="center" prop="value" />
-      <el-table-column label="字典排序" align="center" prop="sort" />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="字典编码" align="left" prop="id" />
+      <el-table-column label="字典标签" align="left" prop="label" />
+      <el-table-column label="字典键值" align="left" prop="value" />
+      <el-table-column label="字典排序" align="left" prop="sort" />
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="颜色类型" align="center" prop="colorType" />
-      <el-table-column label="CSS Class" align="center" prop="cssClass" />
-      <el-table-column label="备注" align="center" prop="remark" :show-overflow-tooltip="true" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="颜色类型" align="left" prop="colorType" />
+      <el-table-column label="CSS Class" align="left" prop="cssClass" />
+      <el-table-column label="备注" align="left" prop="remark" :show-overflow-tooltip="true" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:dict:update']">修改</el-button>

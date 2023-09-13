@@ -47,13 +47,13 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
-      <el-table-column label="发送时间" align="center" prop="sendTime" width="180">
+      <el-table-column label="编号" align="left" prop="id" />
+      <el-table-column label="发送时间" align="left" prop="sendTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.sendTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="接收邮箱" align="center" prop="toMail" width="200">
+      <el-table-column label="接收邮箱" align="left" prop="toMail" width="200">
         <template v-slot="scope">
           <div>{{ scope.row.toMail }}</div>
           <div v-if="scope.row.userType && scope.row.userId">
@@ -61,15 +61,15 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="邮件标题" align="center" prop="templateTitle" />
-      <el-table-column label="发送状态" align="center" prop="sendStatus">
+      <el-table-column label="邮件标题" align="left" prop="templateTitle" />
+      <el-table-column label="发送状态" align="left" prop="sendStatus">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_MAIL_SEND_STATUS" :value="scope.row.sendStatus" />
         </template>
       </el-table-column>
-      <el-table-column label="邮箱账号" align="center" prop="fromMail" />
-      <el-table-column label="模板编号" align="center" prop="templateId" />
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="邮箱账号" align="left" prop="fromMail" />
+      <el-table-column label="模板编号" align="left" prop="templateId" />
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" icon="el-icon-view" @click="handleView(scope.row)"
                      v-hasPermi="['system:mail-log:query']">详细</el-button>

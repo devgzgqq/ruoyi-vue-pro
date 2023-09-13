@@ -49,41 +49,41 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" width="320" />
-      <el-table-column label="流程名" align="center" prop="name" />
-      <el-table-column label="流程分类" align="center" prop="category">
+      <el-table-column label="编号" align="left" prop="id" width="320" />
+      <el-table-column label="流程名" align="left" prop="name" />
+      <el-table-column label="流程分类" align="left" prop="category">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.BPM_MODEL_CATEGORY" :value="scope.row.category" />
         </template>
       </el-table-column>
-      <el-table-column label="当前审批任务" align="center" prop="tasks">
+      <el-table-column label="当前审批任务" align="left" prop="tasks">
         <template v-slot="scope">
           <el-button v-for="task in scope.row.tasks" :key="task.id" type="text"">
             <span>{{ task.name }}</span>
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.BPM_PROCESS_INSTANCE_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="结果" align="center" prop="result">
+      <el-table-column label="结果" align="left" prop="result">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.BPM_PROCESS_INSTANCE_RESULT" :value="scope.row.result"/>
         </template>
       </el-table-column>
-      <el-table-column label="提交时间" align="center" prop="createTime" width="180">
+      <el-table-column label="提交时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="结束时间" align="center" prop="createTime" width="180">
+      <el-table-column label="结束时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.endTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button type="text" size="small" icon="el-icon-delete" v-if="scope.row.result === 1"
                      v-hasPermi="['bpm:process-instance:cancel']" @click="handleCancel(scope.row)">取消</el-button>

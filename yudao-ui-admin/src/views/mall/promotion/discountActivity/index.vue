@@ -34,24 +34,24 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="活动名称" align="center" prop="name" />
-      <el-table-column label="活动时间" align="center" prop="startTime" width="240">
+      <el-table-column label="活动名称" align="left" prop="name" />
+      <el-table-column label="活动时间" align="left" prop="startTime" width="240">
         <template v-slot="scope">
           <div>开始：{{ parseTime(scope.row.startTime) }}</div>
           <div>结束：{{ parseTime(scope.row.endTime) }}</div>
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.PROMOTION_ACTIVITY_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-if="scope.row.status !== PromotionActivityStatusEnum.CLOSE.type"
@@ -92,18 +92,18 @@
             </el-option>
           </el-select>
           <el-table v-loading="loading" :data="form.products">
-            <el-table-column label="商品名称" align="center" width="200">
+            <el-table-column label="商品名称" align="left" width="200">
               <template v-slot="scope">
                 {{ scope.row.spuName }} &nbsp; {{ scope.row.name}}
               </template>
             </el-table-column>
-            <el-table-column label="商品价格" align="center" prop="price">
+            <el-table-column label="商品价格" align="left" prop="price">
               <template v-slot="scope">
                 ￥{{ (scope.row.price / 100.0).toFixed(2) }}
               </template>
             </el-table-column>
-            <el-table-column label="库存" align="center" prop="stock" />
-            <el-table-column label="优惠类型" align="center" property="discountType">
+            <el-table-column label="库存" align="left" prop="stock" />
+            <el-table-column label="优惠类型" align="left" property="discountType">
               <template v-slot="scope">
                 <el-select v-model="scope.row.discountType" placeholder="请选择优惠类型">
                   <el-option v-for="dict in getDictDatas(DICT_TYPE.PROMOTION_DISCOUNT_TYPE)"
@@ -111,7 +111,7 @@
                 </el-select>
               </template>
             </el-table-column>
-            <el-table-column label="优惠" align="center" prop="startTime" width="250">
+            <el-table-column label="优惠" align="left" prop="startTime" width="250">
               <template v-slot="scope">
                 <el-form-item v-if="scope.row.discountType === PromotionDiscountTypeEnum.PRICE.type" prop="discountPrice">
                   减 <el-input-number v-model="scope.row.discountPrice" placeholder="请输入优惠金额"
@@ -123,7 +123,7 @@
                 </el-form-item>
               </template>
             </el-table-column>
-            <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+            <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
               <template v-slot="scope">
                 <el-button size="mini"type="text" @click="removeFormSku(scope.row.skuId)">删除</el-button>
               </template>

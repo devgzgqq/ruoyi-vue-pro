@@ -7,7 +7,6 @@ import cn.iocoder.yudao.module.system.controller.admin.user.vo.user.UserExportRe
 import cn.iocoder.yudao.module.system.controller.admin.user.vo.user.UserPageReqVO;
 import cn.iocoder.yudao.module.system.dal.dataobject.user.AdminUserDO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
 import java.util.Collection;
 import java.util.List;
@@ -32,6 +31,7 @@ public interface AdminUserMapper extends BaseMapperX<AdminUserDO> {
                 .likeIfPresent(AdminUserDO::getUsername, reqVO.getUsername())
                 .likeIfPresent(AdminUserDO::getMobile, reqVO.getMobile())
                 .likeIfPresent(AdminUserDO::getPostIds, reqVO.getPostId())
+                .eqIfPresent(AdminUserDO::getType, reqVO.getType())
                 .eqIfPresent(AdminUserDO::getStatus, reqVO.getStatus())
                 .betweenIfPresent(AdminUserDO::getCreateTime, reqVO.getCreateTime())
                 .inIfPresent(AdminUserDO::getDeptId, deptIds)

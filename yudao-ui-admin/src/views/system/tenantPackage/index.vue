@@ -33,20 +33,20 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="套餐编号" align="center" prop="id" width="80" />
-      <el-table-column label="套餐名" align="center" prop="name" />
-      <el-table-column label="状态" align="center" prop="status" >
+      <el-table-column label="套餐编号" align="left" prop="id" width="80" />
+      <el-table-column label="套餐名" align="left" prop="name" />
+      <el-table-column label="状态" align="left" prop="status" >
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="创建时间" align="center" prop="createTime">
+      <el-table-column label="备注" align="left" prop="remark" />
+      <el-table-column label="创建时间" align="left" prop="createTime">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="100">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width" width="100">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:tenant-package:update']">修改</el-button>

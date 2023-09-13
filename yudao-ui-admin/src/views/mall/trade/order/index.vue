@@ -95,7 +95,7 @@
               </el-row>
               <!-- 订单下的商品 -->
               <el-table :data="row.items" border :show-header="true">
-                <el-table-column label="商品" prop="goods" header-align="center" width="auto" min-width="300">
+                <el-table-column label="商品" prop="goods" header-align="left" width="auto" min-width="300">
                   <template v-slot="{ row, $index }">
                     <div class="goods-info">
                       <img :src="row.picUrl"/>
@@ -106,16 +106,16 @@
                     </div>
                   </template>
                 </el-table-column>
-                <el-table-column label="单价(元)/数量" prop="fee" align="center" width="115">
+                <el-table-column label="单价(元)/数量" prop="fee" align="left" width="115">
                   <template v-slot="{ row }">
                     <div>￥{{ (row.originalUnitPrice / 100.0).toFixed(2) }}</div>
                     <div>{{row.count}} 件</div>
                   </template>
                 </el-table-column>
                 <!-- TODO @小程：这里应该是一个订单下，多个商品，只展示订单上的总金额，就是 order.payPrice -->
-                <el-table-column label="实付金额(元)" prop="price" align="center" width="100"/>
+                <el-table-column label="实付金额(元)" prop="price" align="left" width="100"/>
                 <!-- TODO @小程：这里应该是一个订单下，多个商品，只展示订单上的收件信息；使用 order.receiverXXX 开头的字段 -->
-                <el-table-column label="买家/收货人" prop="buyer" header-align="center" width="auto" min-width="300">
+                <el-table-column label="买家/收货人" prop="buyer" header-align="left" width="auto" min-width="300">
                   <template v-slot="{ row }">
                     <!-- TODO @芋艿：以后增加一个会员详情界面 -->
                     <div>{{row.buyer}}</div>
@@ -124,7 +124,7 @@
                   </template>
                 </el-table-column>
                 <!-- TODO @小程：这里应该是一个订单下，多个商品，交易状态是统一的；使用 order.status 字段 -->
-                <el-table-column label="交易状态" prop="status" align="center" width="100"/>
+                <el-table-column label="交易状态" prop="status" align="left" width="100"/>
               </el-table>
             </template>
           </el-table-column>

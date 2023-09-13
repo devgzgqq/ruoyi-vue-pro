@@ -30,38 +30,38 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="客户端编号" align="center" prop="clientId" />
-      <el-table-column label="客户端密钥" align="center" prop="secret" />
-      <el-table-column label="应用名" align="center" prop="name" />
-      <el-table-column label="应用图标" align="center" prop="logo">
+      <el-table-column label="客户端编号" align="left" prop="clientId" />
+      <el-table-column label="客户端密钥" align="left" prop="secret" />
+      <el-table-column label="应用名" align="left" prop="name" />
+      <el-table-column label="应用图标" align="left" prop="logo">
         <template v-slot="scope">
           <img width="40px" height="40px" :src="scope.row.logo">
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="访问令牌的有效期" align="center" prop="accessTokenValiditySeconds">
+      <el-table-column label="访问令牌的有效期" align="left" prop="accessTokenValiditySeconds">
         <template v-slot="scope">{{ scope.row.accessTokenValiditySeconds }} 秒</template>
       </el-table-column>
-      <el-table-column label="刷新令牌的有效期" align="center" prop="refreshTokenValiditySeconds">
+      <el-table-column label="刷新令牌的有效期" align="left" prop="refreshTokenValiditySeconds">
         <template v-slot="scope">{{ scope.row.refreshTokenValiditySeconds }} 秒</template>
       </el-table-column>
-      <el-table-column label="授权类型" align="center" prop="authorizedGrantTypes">
+      <el-table-column label="授权类型" align="left" prop="authorizedGrantTypes">
         <template v-slot="scope">
           <el-tag :disable-transitions="true" :key="index" v-for="(authorizedGrantType, index) in scope.row.authorizedGrantTypes" :index="index">
             {{ authorizedGrantType }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:oauth2-client:update']">修改</el-button>

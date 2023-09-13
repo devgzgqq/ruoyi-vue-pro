@@ -42,38 +42,38 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id"  width="80" />
-      <el-table-column label="昵称" align="center" prop="nickname" />
-      <el-table-column label="姓名" align="center" prop="name" />
-      <el-table-column label="手机号" align="center" prop="mobile" />
-      <el-table-column label="级别" align="center" prop="level">
+      <el-table-column label="编号" align="left" prop="id"  width="80" />
+      <el-table-column label="昵称" align="left" prop="nickname" />
+      <el-table-column label="姓名" align="left" prop="name" />
+      <el-table-column label="手机号" align="left" prop="mobile" />
+      <el-table-column label="级别" align="left" prop="level">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.TRAINING_COACH_LEVEL" :value="scope.row.level" />
         </template>
       </el-table-column>
-      <el-table-column label="标签" align="center" prop="label">
+      <el-table-column label="标签" align="left" prop="label">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.TRAINING_COACH_TAGS" :value="scope.row.label" />
         </template>
       </el-table-column>
-      <el-table-column label="授课单价" align="center" prop="price" />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="授课单价" align="left" prop="price" />
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="推荐" align="center" prop="recommend">
+      <el-table-column label="推荐" align="left" prop="recommend">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.recommend" />
         </template>
       </el-table-column>
-      <el-table-column label="排序" align="center" prop="sort" />
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="排序" align="left" prop="sort" />
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="180">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width" width="180">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['training:coach:update']">修改</el-button>

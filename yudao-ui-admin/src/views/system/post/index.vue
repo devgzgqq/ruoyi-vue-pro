@@ -31,21 +31,21 @@
     </el-row>
 
     <el-table v-loading="loading" :data="postList">
-      <el-table-column label="岗位编号" align="center" prop="id" width="80px"/>
-      <el-table-column label="岗位编码" align="center" prop="code" />
-      <el-table-column label="岗位名称" align="center" prop="name" />
-      <el-table-column label="岗位排序" align="center" prop="sort" />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="岗位编号" align="left" prop="id" width="80px"/>
+      <el-table-column label="岗位编码" align="left" prop="code" />
+      <el-table-column label="岗位名称" align="left" prop="name" />
+      <el-table-column label="岗位排序" align="left" prop="sort" />
+      <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['system:post:update']">修改</el-button>

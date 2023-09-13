@@ -36,21 +36,21 @@
     </el-row>
 
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="访问编号" align="center" prop="id" />
-      <el-table-column label="日志类型" align="center" prop="logType" width="120">
+      <el-table-column label="访问编号" align="left" prop="id" />
+      <el-table-column label="日志类型" align="left" prop="logType" width="120">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_LOGIN_TYPE" :value="scope.row.logType" />
         </template>
       </el-table-column>
-      <el-table-column label="用户名称" align="center" prop="username" />
-      <el-table-column label="登录地址" align="center" prop="userIp" width="130" :show-overflow-tooltip="true" />
-      <el-table-column label="userAgent" align="center" prop="userAgent" width="400" :show-overflow-tooltip="true" />
-      <el-table-column label="结果" align="center" prop="status">
+      <el-table-column label="用户名称" align="left" prop="username" />
+      <el-table-column label="登录地址" align="left" prop="userIp" width="130" :show-overflow-tooltip="true" />
+      <el-table-column label="userAgent" align="left" prop="userAgent" width="400" :show-overflow-tooltip="true" />
+      <el-table-column label="结果" align="left" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.SYSTEM_LOGIN_RESULT" :value="scope.row.result" />
         </template>
       </el-table-column>
-      <el-table-column label="登录日期" align="center" prop="loginTime" width="180">
+      <el-table-column label="登录日期" align="left" prop="loginTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>

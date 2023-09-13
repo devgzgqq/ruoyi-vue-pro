@@ -15,42 +15,42 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="订单编号" align="center" prop="id" />
-      <el-table-column label="用户编号" align="center" prop="userId" />
-      <el-table-column label="商品名字" align="center" prop="spuName" />
-      <el-table-column label="支付价格" align="center" prop="price">
+      <el-table-column label="订单编号" align="left" prop="id" />
+      <el-table-column label="用户编号" align="left" prop="userId" />
+      <el-table-column label="商品名字" align="left" prop="spuName" />
+      <el-table-column label="支付价格" align="left" prop="price">
         <template v-slot="scope">
           <span>￥{{ (scope.row.price / 100.0).toFixed(2) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="退款金额" align="center" prop="refundPrice">
+      <el-table-column label="退款金额" align="left" prop="refundPrice">
         <template v-slot="scope">
           <span>￥{{ (scope.row.refundPrice / 100.0).toFixed(2) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="创建时间" align="left" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="支付单号" align="center" prop="payOrderId" />
-      <el-table-column label="是否支付" align="center" prop="payStatus">
+      <el-table-column label="支付单号" align="left" prop="payOrderId" />
+      <el-table-column label="是否支付" align="left" prop="payStatus">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.payStatus" />
         </template>
       </el-table-column>
-      <el-table-column label="支付时间" align="center" prop="payTime" width="180">
+      <el-table-column label="支付时间" align="left" prop="payTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.payTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="退款时间" align="center" prop="refundTime" width="180">
+      <el-table-column label="退款时间" align="left" prop="refundTime" width="180">
         <template v-slot="scope">
           <span v-if="scope.row.refundTime">{{ parseTime(scope.row.refundTime) }}</span>
           <span v-else-if="scope.row.payRefundId">退款中，等待退款结果</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="left" class-name="small-padding fixed-width">
         <template v-slot="scope">
           <el-button size="mini" type="text" @click="handlePay(scope.row)"
                      v-if="!scope.row.payStatus">前往支付</el-button>
