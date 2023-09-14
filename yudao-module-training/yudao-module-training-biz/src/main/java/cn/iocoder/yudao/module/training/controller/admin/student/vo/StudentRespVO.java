@@ -13,6 +13,8 @@ public class StudentRespVO extends StudentBaseVO {
     @Schema(description = "编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "14347")
     private Long id;
 
+    private String storeName;
+
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     private LocalDateTime createTime;
 

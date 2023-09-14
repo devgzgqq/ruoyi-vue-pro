@@ -1,6 +1,8 @@
 package cn.iocoder.yudao.module.training.service.store;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
+import cn.iocoder.yudao.framework.common.util.collection.CollectionUtils;
 import cn.iocoder.yudao.module.training.convert.store.StoreConvert;
 import cn.iocoder.yudao.module.training.dal.dataobject.store.StoreDO;
 import cn.iocoder.yudao.module.training.dal.mysql.store.StoreMapper;
@@ -14,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.iocoder.yudao.module.training.enums.ErrorCodeConstants.STORE_NOT_EXISTS;
@@ -80,6 +83,12 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<StoreDO> getStoreList(StoreExportReqVO exportReqVO) {
         return storeMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public Map<Long, StoreDO> getStoreMap(List<Long> storeIds) {
+        List<StoreDO> storeDOList = storeMapper.selectBatchIds(storeIds);
+        return CollectionUtils.convertMap(storeDOList, StoreDO::getId);
     }
 
 }
