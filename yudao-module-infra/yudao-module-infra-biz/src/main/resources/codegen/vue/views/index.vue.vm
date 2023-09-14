@@ -2,7 +2,7 @@
   <div class="app-container">
 
     <!-- 搜索工作栏 -->
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="mini" :inline="true" v-show="showSearch">
 #foreach($column in $columns)
 #if ($column.listOperation)
     #set ($dictType=$column.dictType)
@@ -15,7 +15,7 @@
       </el-form-item>
 #elseif ($column.htmlType == "select" || $column.htmlType == "radio")
       <el-form-item label="${comment}" prop="${javaField}">
-        <el-select v-model="queryParams.${javaField}" placeholder="请选择${comment}" clearable size="small">
+        <el-select v-model="queryParams.${javaField}" placeholder="请选择${comment}" clearable>
     #if ("" != $dictType)## 设置了 dictType 数据字典的情况
           <el-option v-for="dict in this.getDictDatas(DICT_TYPE.$dictType.toUpperCase())"
                        :key="dict.value" :label="dict.label" :value="dict.value"/>
@@ -66,27 +66,27 @@
     #set ($AttrName=$column.javaField.substring(0,1).toUpperCase() + ${column.javaField.substring(1)})
     #set ($comment=$column.columnComment)
 #if ($column.javaType == "LocalDateTime")## 时间类型
-      <el-table-column label="${comment}" align="center" prop="${javaField}" width="180">
+      <el-table-column label="${comment}" prop="${javaField}" width="80">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.${javaField}) }}</span>
         </template>
       </el-table-column>
 #elseif("" != $column.dictType)## 数据字典
-      <el-table-column label="${comment}" align="center" prop="${javaField}">
+      <el-table-column label="${comment}" prop="${javaField}" show-overflow-tooltip>
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.$dictType.toUpperCase()" :value="scope.row.${column.javaField}" />
         </template>
       </el-table-column>
 #else
-      <el-table-column label="${comment}" align="center" prop="${javaField}" />
+      <el-table-column label="${comment}" prop="${javaField}" show-overflow-tooltip />
 #end
 #end
 #end
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="100">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
+          <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['${permissionPrefix}:update']">修改</el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini" type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['${permissionPrefix}:delete']">删除</el-button>
         </template>
       </el-table-column>
@@ -97,7 +97,7 @@
 
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="500px" v-dialogDrag append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
 #foreach($column in $columns)
 #if ($column.createOperation || $column.updateOperation)
     #set ($dictType = $column.dictType)

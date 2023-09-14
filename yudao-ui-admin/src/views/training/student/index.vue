@@ -110,17 +110,20 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+    <StoreDialog :visible.sync="storeOpen" @submit="storeSelectChange"></StoreDialog>
   </div>
 </template>
 
 <script>
 import { createStudent, updateStudent, deleteStudent, getStudent, getStudentPage, exportStudentExcel } from "@/api/training/student";
 import ImageUpload from '@/components/ImageUpload';
+import StoreDialog from '@/components/StoreDialog'
 
 export default {
   name: "Student",
   components: {
     ImageUpload,
+    StoreDialog
   },
   data() {
     return {
@@ -151,15 +154,31 @@ export default {
       // 表单校验
       rules: {
         name: [{ required: true, message: "姓名不能为空", trigger: "blur" }],
-      }
+      },
+      storeOpen: false,
+      // 当前选中学生
+      currentStudent: {}
     };
   },
   created() {
     this.getList();
   },
   methods: {
+    storeSelectChange(store) {
+      const student = {
+        id: this.currentStudent.id,
+        name: store.name,
+        storeId: store.id
+      }
+      updateStudent(student).then(res => {
+        if (res) {
+          this.$modal.msgSuccess("修改成功");
+        }
+      })
+    },
     // 更多操作
     handleCommand(command, index, row) {
+      this.currentStudent = row
       switch (command) {
         case 'handleDelete':
           this.handleDelete(row);//红号变更
@@ -177,7 +196,7 @@ export default {
       }
     },
     handleSetStore() {
-
+      this.storeOpen = true
     },
     handleSetCoach() {
 

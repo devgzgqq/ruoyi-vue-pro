@@ -37,7 +37,7 @@ export function getStudent(id) {
 // 获得学员分页
 export function getStudentPage(query) {
   return request({
-    url: '/training/student/page',
+    url: '/training/student/joinpage',
     method: 'get',
     params: query
   })

@@ -1,5 +1,10 @@
 // cover some element-ui styles
 
+// table
+.el-table th.el-table__cell {
+  background-color: #f5f7fa !important;
+}
+
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
   font-weight: 400 !important;
