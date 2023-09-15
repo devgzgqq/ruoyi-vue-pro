@@ -1,10 +1,16 @@
 package cn.iocoder.yudao.module.training.service.coach;
 
-import java.util.*;
-import javax.validation.*;
-import cn.iocoder.yudao.module.training.controller.admin.coach.vo.*;
-import cn.iocoder.yudao.module.training.dal.dataobject.coach.CoachDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
+import cn.iocoder.yudao.module.training.controller.admin.coach.vo.CoachCreateReqVO;
+import cn.iocoder.yudao.module.training.controller.admin.coach.vo.CoachExportReqVO;
+import cn.iocoder.yudao.module.training.controller.admin.coach.vo.CoachPageReqVO;
+import cn.iocoder.yudao.module.training.controller.admin.coach.vo.CoachUpdateReqVO;
+import cn.iocoder.yudao.module.training.dal.dataobject.coach.CoachDO;
+
+import javax.validation.Valid;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 教练 Service 接口
@@ -50,6 +56,14 @@ public interface CoachService {
      * @return 教练列表
      */
     List<CoachDO> getCoachList(Collection<Long> ids);
+
+    /**
+     * 获得教练 Map
+     *
+     * @param ids 编号
+     * @return 教练 Map
+     */
+    Map<Long, CoachDO> getCoachMap(Collection<Long> ids);
 
     /**
      * 获得教练分页

@@ -15,6 +15,10 @@ public class StudentRespVO extends StudentBaseVO {
 
     private String storeName;
 
+    private String coachName;
+
+    private String memberName;
+
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     private LocalDateTime createTime;
 

@@ -35,9 +35,9 @@
     <el-table v-loading="loading" :data="list">
       <el-table-column label="编号" align="left" prop="id" width="80px" />
       <el-table-column label="姓名" align="left" prop="name" />
-      <el-table-column label="所属门店" align="left" prop="storeId" />
-      <el-table-column label="所属教练" align="left" prop="coachId" />
-      <el-table-column label="所属会员" align="left" prop="memberId" />
+      <el-table-column label="所属门店" align="left" prop="storeName" />
+      <el-table-column label="所属教练" align="left" prop="coachName" />
+      <el-table-column label="所属会员" align="left" prop="memberName" />
 <!--      <el-table-column label="头像" align="left" prop="avatar" />-->
 <!--      <el-table-column label="状态" align="left" prop="status">-->
 <!--        <template v-slot="scope">-->
@@ -110,7 +110,9 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
-    <StoreDialog :visible.sync="storeOpen" @submit="storeSelectChange"></StoreDialog>
+    <StoreDialog v-if="storeOpen" :visible.sync="storeOpen" @submit="storeSelectChange"></StoreDialog>
+    <AdminUserDialog v-if="adminUserOpen" user-type="coach" title="选择所属教练" :visible.sync="adminUserOpen" @submit="coachSelectChange"></AdminUserDialog>
+    <MemberDialog v-if="memberUserOpen" title="选择所属会员" :visible.sync="memberUserOpen" @submit="memberSelectChange"></MemberDialog>
   </div>
 </template>
 
@@ -118,12 +120,16 @@
 import { createStudent, updateStudent, deleteStudent, getStudent, getStudentPage, exportStudentExcel } from "@/api/training/student";
 import ImageUpload from '@/components/ImageUpload';
 import StoreDialog from '@/components/StoreDialog'
+import AdminUserDialog from '@/components/AdminUserDialog'
+import MemberDialog from '@/components/MemberDialog'
 
 export default {
   name: "Student",
   components: {
     ImageUpload,
-    StoreDialog
+    StoreDialog,
+    AdminUserDialog,
+    MemberDialog
   },
   data() {
     return {
@@ -156,6 +162,8 @@ export default {
         name: [{ required: true, message: "姓名不能为空", trigger: "blur" }],
       },
       storeOpen: false,
+      adminUserOpen: false,
+      memberUserOpen: false,
       // 当前选中学生
       currentStudent: {}
     };
@@ -164,15 +172,42 @@ export default {
     this.getList();
   },
   methods: {
+    memberSelectChange(item) {
+      const student = {
+        id: this.currentStudent.id,
+        name: this.currentStudent.name,
+        memberId: item.data.id
+      }
+      updateStudent(student).then(res => {
+        if (res) {
+          this.$modal.msgSuccess("修改成功");
+          this.getList()
+        }
+      })
+    },
+    coachSelectChange(item) {
+      const student = {
+        id: this.currentStudent.id,
+        name: this.currentStudent.name,
+        coachId: item.data.id
+      }
+      updateStudent(student).then(res => {
+        if (res) {
+          this.$modal.msgSuccess("修改成功");
+          this.getList()
+        }
+      })
+    },
     storeSelectChange(store) {
       const student = {
         id: this.currentStudent.id,
-        name: store.name,
+        name: this.currentStudent.name,
         storeId: store.id
       }
       updateStudent(student).then(res => {
         if (res) {
           this.$modal.msgSuccess("修改成功");
+          this.getList()
         }
       })
     },
@@ -199,10 +234,10 @@ export default {
       this.storeOpen = true
     },
     handleSetCoach() {
-
+      this.adminUserOpen = true
     },
     handleSetMember() {
-
+      this.memberUserOpen = true
     },
     /** 查询列表 */
     getList() {

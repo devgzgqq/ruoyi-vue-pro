@@ -1,4 +1,14 @@
 // cover some element-ui styles
+.el-upload--picture-card {
+  width: 98px !important;
+  height: 98px !important;
+  line-height: 100px !important;
+}
+
+.el-upload-list--picture-card .el-upload-list__item {
+  width: 98px !important;
+  height: 98px !important;
+}
 
 // table
 .el-table th.el-table__cell {

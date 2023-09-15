@@ -33,5 +33,9 @@ public class MemberUserRespDTO {
      * 手机
      */
     private String mobile;
+    /**
+     * 姓名
+     */
+    private String name;
 
 }

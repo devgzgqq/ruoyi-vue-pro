@@ -1,40 +1,40 @@
 package cn.iocoder.yudao.module.training.controller.admin.student;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.iocoder.yudao.module.training.convert.store.StoreConvert;
-import cn.iocoder.yudao.module.training.dal.dataobject.store.StoreDO;
-import cn.iocoder.yudao.module.training.service.store.StoreService;
-import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.security.access.prepost.PreAuthorize;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Operation;
-
-import javax.validation.constraints.*;
-import javax.validation.*;
-import javax.servlet.http.*;
-import java.util.*;
-import java.io.IOException;
-
-import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.common.pojo.CommonResult;
-import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
-
+import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
-
 import cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog;
-
-import static cn.iocoder.yudao.framework.common.util.collection.CollectionUtils.convertList;
-import static cn.iocoder.yudao.framework.operatelog.core.enums.OperateTypeEnum.*;
-
+import cn.iocoder.yudao.module.member.api.user.MemberUserApi;
+import cn.iocoder.yudao.module.member.api.user.dto.MemberUserRespDTO;
+import cn.iocoder.yudao.module.system.api.user.AdminUserApi;
+import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import cn.iocoder.yudao.module.training.controller.admin.student.vo.*;
-import cn.iocoder.yudao.module.training.dal.dataobject.student.StudentDO;
 import cn.iocoder.yudao.module.training.convert.student.StudentConvert;
+import cn.iocoder.yudao.module.training.dal.dataobject.store.StoreDO;
+import cn.iocoder.yudao.module.training.dal.dataobject.student.StudentDO;
+import cn.iocoder.yudao.module.training.service.store.StoreService;
 import cn.iocoder.yudao.module.training.service.student.StudentService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
+import static cn.iocoder.yudao.framework.common.util.collection.CollectionUtils.convertList;
+import static cn.iocoder.yudao.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
 
 @Tag(name = "管理后台 - 学员")
 @RestController
@@ -47,6 +47,12 @@ public class StudentController {
 
     @Resource
     private StoreService storeService;
+
+    @Resource
+    private AdminUserApi adminUserApi;
+
+    @Resource
+    private MemberUserApi memberUserApi;
 
     @PostMapping("/create")
     @Operation(summary = "创建学员")
@@ -100,8 +106,15 @@ public class StudentController {
         }
 
         List<Long> storeIds = convertList(pageResult.getList(), StudentDO::getStoreId);
+        List<Long> coachIds = convertList(pageResult.getList(), StudentDO::getCoachId);
+        List<Long> memberIds = convertList(pageResult.getList(), StudentDO::getMemberId);
 
+        // 获得门店 Map
         Map<Long, StoreDO> storeMap = storeService.getStoreMap(storeIds);
+        // 获得教练 Map
+        Map<Long, AdminUserRespDTO> userMap = adminUserApi.getUserMap(coachIds);
+        // 获得会员 Map
+        Map<Long, MemberUserRespDTO> memberMap = memberUserApi.getUserMap(memberIds);
 
         ArrayList<StudentRespVO> studentRespVOs = new ArrayList<>(pageResult.getList().size());
 
@@ -109,6 +122,12 @@ public class StudentController {
             StudentRespVO respVO = StudentConvert.INSTANCE.convert(student);
             if(ObjectUtil.isNotEmpty(student.getStoreId())) {
                 respVO.setStoreName(storeMap.get(student.getStoreId()).getName());
+            }
+            if (ObjectUtil.isNotEmpty(student.getCoachId())) {
+                respVO.setCoachName(userMap.get(student.getCoachId()).getNickname());
+            }
+            if(ObjectUtil.isNotEmpty(student.getMemberId()) && ObjectUtil.isNotEmpty(memberMap.get(student.getMemberId()))) {
+                respVO.setMemberName(memberMap.get(student.getMemberId()).getName());
             }
             studentRespVOs.add(respVO);
         });

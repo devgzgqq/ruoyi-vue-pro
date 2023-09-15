@@ -19,11 +19,11 @@
     <!-- 操作工具栏 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
+        <el-button type="primary" size="mini" @click="handleAdd"
                    v-hasPermi="['member:tag:create']">新增</el-button>
       </el-col>
       <el-col :span="1.5">
-        <el-button type="warning" plain icon="el-icon-download" size="mini" @click="handleExport" :loading="exportLoading"
+        <el-button icon="el-icon-download" size="mini" @click="handleExport" :loading="exportLoading"
                    v-hasPermi="['member:tag:export']">导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -31,18 +31,18 @@
 
     <!-- 列表 -->
     <el-table v-loading="loading" :data="list">
-      <el-table-column label="编号" align="center" prop="id" />
+      <el-table-column label="编号" align="center" prop="id" width="80" />
       <el-table-column label="标签名称" align="center" prop="name" />
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template v-slot="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="100">
         <template v-slot="scope">
-          <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
+          <el-button size="mini" type="text" @click="handleUpdate(scope.row)"
                      v-hasPermi="['member:tag:update']">修改</el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
+          <el-button size="mini" type="text" @click="handleDelete(scope.row)"
                      v-hasPermi="['member:tag:delete']">删除</el-button>
         </template>
       </el-table-column>
