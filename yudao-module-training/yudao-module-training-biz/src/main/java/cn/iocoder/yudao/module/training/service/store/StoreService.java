@@ -10,6 +10,7 @@ import cn.iocoder.yudao.module.training.vo.store.StoreUpdateReqVO;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 门店 Service 接口
@@ -72,4 +73,5 @@ public interface StoreService {
      */
     List<StoreDO> getStoreList(StoreExportReqVO exportReqVO);
 
+    Map<Long, StoreDO> getStoreMap(List<Long> storeIds);
 }

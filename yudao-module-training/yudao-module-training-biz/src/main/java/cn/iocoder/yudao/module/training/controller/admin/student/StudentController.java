@@ -1,5 +1,11 @@
 package cn.iocoder.yudao.module.training.controller.admin.student;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.iocoder.yudao.module.training.convert.store.StoreConvert;
+import cn.iocoder.yudao.module.training.dal.dataobject.store.StoreDO;
+import cn.iocoder.yudao.module.training.service.store.StoreService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +27,8 @@ import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
 import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
 
 import cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog;
+
+import static cn.iocoder.yudao.framework.common.util.collection.CollectionUtils.convertList;
 import static cn.iocoder.yudao.framework.operatelog.core.enums.OperateTypeEnum.*;
 
 import cn.iocoder.yudao.module.training.controller.admin.student.vo.*;
@@ -36,6 +44,9 @@ public class StudentController {
 
     @Resource
     private StudentService studentService;
+
+    @Resource
+    private StoreService storeService;
 
     @PostMapping("/create")
     @Operation(summary = "创建学员")
@@ -84,7 +95,25 @@ public class StudentController {
     @PreAuthorize("@ss.hasPermission('training:student:query')")
     public CommonResult<PageResult<StudentRespVO>> getStudentPage(@Valid StudentPageReqVO pageVO) {
         PageResult<StudentDO> pageResult = studentService.getStudentPage(pageVO);
-        return success(StudentConvert.INSTANCE.convertPage(pageResult));
+        if(CollUtil.isEmpty(pageResult.getList())) {
+            return success(new PageResult<>(pageResult.getTotal()));
+        }
+
+        List<Long> storeIds = convertList(pageResult.getList(), StudentDO::getStoreId);
+
+        Map<Long, StoreDO> storeMap = storeService.getStoreMap(storeIds);
+
+        ArrayList<StudentRespVO> studentRespVOs = new ArrayList<>(pageResult.getList().size());
+
+        pageResult.getList().forEach(student -> {
+            StudentRespVO respVO = StudentConvert.INSTANCE.convert(student);
+            if(ObjectUtil.isNotEmpty(student.getStoreId())) {
+                respVO.setStoreName(storeMap.get(student.getStoreId()).getName());
+            }
+            studentRespVOs.add(respVO);
+        });
+
+        return success(new PageResult<>(studentRespVOs, pageResult.getTotal()));
     }
 
     @GetMapping("/export-excel")
