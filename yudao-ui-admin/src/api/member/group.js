@@ -43,6 +43,13 @@ export function getGroupPage(query) {
   })
 }
 
+export function getSimpleGroups() {
+  return request({
+    url: '/member/group/list-all-simple',
+    method: 'get',
+  })
+}
+
 // 导出用户分组 Excel
 export function exportGroupExcel(query) {
   return request({

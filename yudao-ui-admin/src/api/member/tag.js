@@ -43,6 +43,13 @@ export function getTagPage(query) {
   })
 }
 
+export function getSimpleTags() {
+  return request({
+    url: '/member/tag/list-all-simple',
+    method: 'get',
+  })
+}
+
 // 导出会员标签 Excel
 export function exportTagExcel(query) {
   return request({

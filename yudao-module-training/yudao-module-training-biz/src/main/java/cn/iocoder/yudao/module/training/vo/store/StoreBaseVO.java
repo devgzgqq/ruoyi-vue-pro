@@ -47,7 +47,7 @@ public class StoreBaseVO {
     private Integer sort;
 
     @Schema(description = "门店状态", example = "1")
-    private Boolean status;
+    private Byte status;
 
     @Schema(description = "是否推荐")
     private Boolean recommend;

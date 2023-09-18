@@ -76,7 +76,7 @@ public class StoreDO extends BaseDO {
      *
      * 枚举 {@link TODO infra_boolean_string 对应的类}
      */
-    private Boolean status;
+    private Byte status;
     /**
      * 是否推荐
      *

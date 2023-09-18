@@ -14,8 +14,8 @@
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择门店状态" clearable>
-          <el-option v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"
-                       :key="dict.value" :label="dict.label" :value="dict.value"/>
+          <el-option v-for="dict in this.getDictDatas(DICT_TYPE.COMMON_STATUS)"
+                       :key="dict.value" :label="dict.label" :value="parseInt(dict.value)"/>
         </el-select>
       </el-form-item>
       <el-form-item label="是否推荐" prop="recommend">
@@ -48,14 +48,14 @@
       <el-table-column label="编号" align="left" prop="id" />
       <el-table-column label="名称" align="left" prop="name" />
       <el-table-column label="手机号" align="left" prop="mobile" />
-      <el-table-column label="地址" align="left" prop="address" />
+      <el-table-column label="地址" align="left" prop="address" show-overflow-tooltip />
       <el-table-column label="经度" align="left" prop="longitude" />
       <el-table-column label="纬度" align="left" prop="latitude" />
       <el-table-column label="营业时间" align="left" prop="businessHours" />
       <el-table-column label="排序" align="left" prop="sort" />
       <el-table-column label="状态" align="left" prop="status">
         <template v-slot="scope">
-          <dict-tag :type="DICT_TYPE.INFRA_BOOLEAN_STRING" :value="scope.row.status" />
+          <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
       <el-table-column label="是否推荐" align="left" prop="recommend">
@@ -84,51 +84,82 @@
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open" width="800px" v-dialogDrag append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="left">
-        <el-form-item label="名称" prop="name">
-          <el-input v-model="form.name" placeholder="请输入门店名称" />
-        </el-form-item>
-        <el-form-item label="手机号" prop="mobile">
-          <el-input v-model="form.mobile" placeholder="请输入门店手机号" />
-        </el-form-item>
-        <el-form-item label="地址" prop="address">
-          <el-input v-model="form.address" placeholder="请输入门店地址" />
-        </el-form-item>
-        <el-form-item label="经度" prop="longitude">
-          <el-input v-model="form.longitude" placeholder="请输入经度" />
-        </el-form-item>
-        <el-form-item label="纬度" prop="latitude">
-          <el-input v-model="form.latitude" placeholder="请输入纬度" />
-        </el-form-item>
         <el-form-item label="logo">
           <imageUpload v-model="form.logo" :limit="1"/>
         </el-form-item>
         <el-form-item label="图片">
           <imageUpload v-model="form.images" :limit="3"/>
         </el-form-item>
+        <div class="gw-grid gw-grid-cols-2 gw-gap-8">
+          <div>
+            <el-form-item label="名称" prop="name">
+              <el-input v-model="form.name" placeholder="请输入门店名称" />
+            </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="手机号" prop="mobile">
+              <el-input clearable v-model="form.mobile" placeholder="请输入门店手机号" />
+            </el-form-item>
+          </div>
+        </div>
+        <div class="gw-grid gw-grid-cols-2 gw-gap-8">
+          <div>
+            <el-form-item label="经度" prop="longitude">
+              <el-input v-model="form.longitude" placeholder="请输入经度" />
+            </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="纬度" prop="latitude">
+              <el-input v-model="form.latitude" placeholder="请输入纬度" />
+            </el-form-item>
+          </div>
+        </div>
+        <div class="gw-grid gw-grid-cols-2 gw-gap-8">
+          <div>
+            <el-form-item label="营业时间" prop="businessHours">
+              <el-input v-model="form.businessHours" placeholder="请输入营业时间" />
+            </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="排序" prop="sort">
+              <el-input-number style="width: 100%;" :min="0" v-model="form.sort" placeholder="请输入排序" />
+            </el-form-item>
+          </div>
+        </div>
+        <div class="gw-grid gw-grid-cols-2 gw-gap-8">
+          <div>
+            <el-form-item label="状态" prop="status">
+              <el-radio-group v-model="form.status">
+                <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.COMMON_STATUS)"
+                          :key="dict.value" :label="parseInt(dict.value)">{{dict.label}}</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="是否推荐" prop="recommend">
+<!--              <el-radio-group v-model="form.recommend">-->
+<!--                <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"-->
+<!--                          :key="dict.value" :label="dict.value">{{dict.label}}</el-radio>-->
+<!--              </el-radio-group>-->
+              <el-switch v-model="form.recommend" />
+            </el-form-item>
+          </div>
+        </div>
+        <el-form-item label="地址" prop="address">
+          <el-input v-model="form.address" placeholder="请输入门店地址" />
+        </el-form-item>
+
+
         <el-form-item label="介绍">
           <editor v-model="form.introduce" :min-height="192"/>
         </el-form-item>
         <el-form-item label="公告">
           <editor v-model="form.notice" :min-height="192"/>
         </el-form-item>
-        <el-form-item label="营业时间" prop="businessHours">
-          <el-input v-model="form.businessHours" placeholder="请输入营业时间" />
-        </el-form-item>
-        <el-form-item label="排序" prop="sort">
-          <el-input v-model="form.sort" placeholder="请输入排序" />
-        </el-form-item>
-        <el-form-item label="状态" prop="status">
-          <el-radio-group v-model="form.status">
-            <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"
-                      :key="dict.value" :label="dict.value">{{dict.label}}</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="是否推荐" prop="recommend">
-          <el-radio-group v-model="form.recommend">
-            <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.INFRA_BOOLEAN_STRING)"
-                      :key="dict.value" :label="dict.value">{{dict.label}}</el-radio>
-          </el-radio-group>
-        </el-form-item>
+
+
+
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -140,6 +171,7 @@
 
 <script>
 import { createStore, updateStore, deleteStore, getStore, getStorePage, exportStoreExcel } from "@/api/training/store";
+import { checkCommonName, checkPhoneNum } from "@/utils/validate";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
 
@@ -183,7 +215,13 @@ export default {
       form: {},
       // 表单校验
       rules: {
-        name: [{ required: true, message: "门店名称不能为空", trigger: "blur" }],
+        name: [
+          { required: true, message: "门店名称不能为空", trigger: "blur" },
+          { validator: checkCommonName, trigger: "blur" },
+        ],
+        mobile: [
+          { validator: checkPhoneNum, trigger: 'blur'}
+        ]
       }
     };
   },

@@ -122,6 +122,7 @@ import ImageUpload from '@/components/ImageUpload';
 import StoreDialog from '@/components/StoreDialog'
 import AdminUserDialog from '@/components/AdminUserDialog'
 import MemberDialog from '@/components/MemberDialog'
+import { checkName } from '@/utils/validate'
 
 export default {
   name: "Student",
@@ -159,7 +160,10 @@ export default {
       form: {},
       // 表单校验
       rules: {
-        name: [{ required: true, message: "姓名不能为空", trigger: "blur" }],
+        name: [
+          { required: true, message: "姓名不能为空", trigger: "blur" },
+          { validator: checkName, trigger: 'blur'}
+        ],
       },
       storeOpen: false,
       adminUserOpen: false,

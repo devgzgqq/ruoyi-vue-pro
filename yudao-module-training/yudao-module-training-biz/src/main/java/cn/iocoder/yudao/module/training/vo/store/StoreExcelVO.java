@@ -54,7 +54,7 @@ public class StoreExcelVO {
 
     @ExcelProperty(value = "门店状态", converter = DictConvert.class)
     @DictFormat("infra_boolean_string") // TODO 代码优化：建议设置到对应的 XXXDictTypeConstants 枚举类中
-    private Boolean status;
+    private Byte status;
 
     @ExcelProperty(value = "是否推荐", converter = DictConvert.class)
     @DictFormat("infra_boolean_string") // TODO 代码优化：建议设置到对应的 XXXDictTypeConstants 枚举类中
