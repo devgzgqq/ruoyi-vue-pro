@@ -8,6 +8,7 @@ import store from '@/store'
 export const DICT_TYPE = {
   USER_TYPE: 'user_type',
   COMMON_STATUS: 'common_status',
+  COMMON_DAYS: 'common _days',
   TERMINAL: 'terminal',
 
   // ========== SYSTEM 模块 ==========
@@ -88,6 +89,7 @@ export const DICT_TYPE = {
   TRAINING_COACH_LEVEL: 'training_coach_level', // 教练级别
   TRAINING_COACH_TAGS: 'training_coach_tags', // 教练标签
   TRAINING_ADVISER_LEVEL: 'training_adviser_level', // 顾问级别
+  TRAINING_CLASS_TYPE: 'training_class_type', // 班级类型
 
   // ========== OPERATION - SALESPERSON 模块 ==========
   OPERATION_SALESPERSON_LEVEL: 'operation_salesperson_level', // 业务员级别

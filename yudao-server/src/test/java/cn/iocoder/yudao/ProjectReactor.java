@@ -43,8 +43,8 @@ public class ProjectReactor {
 
         // ========== 配置，需要你手动修改 ==========
         String groupIdNew = "com.gzgqq.boot";
-        String artifactIdNew = "gzgqq";
-        String packageNameNew = "com.gzgqq.tc";
+        String artifactIdNew = "taochen";
+        String packageNameNew = "com.gzgqq.taochen";
         String titleNew = "韬辰管理系统";
         String projectBaseDirNew = projectBaseDir + "-new"; // 一键改名后，“新”项目所在的目录
         log.info("[main][检测新项目目录 ({})是否存在]", projectBaseDirNew);

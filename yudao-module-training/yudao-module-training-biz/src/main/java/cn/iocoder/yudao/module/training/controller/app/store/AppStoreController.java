@@ -83,6 +83,13 @@ public class AppStoreController {
         return success(StoreConvert.INSTANCE.convertPage(pageResult));
     }
 
+    @GetMapping("/list-all-simple")
+    @Operation(summary = "获得简单门店列表")
+    public CommonResult<List<StoreExcelVO>> getStoreList(@Valid StoreExportReqVO exportReqVO) {
+        List<StoreDO> list = storeService.getStoreList(exportReqVO);
+        return success(StoreConvert.INSTANCE.convertList02(list));
+    }
+
     @GetMapping("/export-excel")
     @Operation(summary = "导出门店 Excel")
 

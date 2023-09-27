@@ -74,4 +74,5 @@ public interface StoreService {
     List<StoreDO> getStoreList(StoreExportReqVO exportReqVO);
 
     Map<Long, StoreDO> getStoreMap(List<Long> storeIds);
+
 }

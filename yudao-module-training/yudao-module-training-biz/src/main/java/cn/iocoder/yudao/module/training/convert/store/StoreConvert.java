@@ -2,10 +2,7 @@ package cn.iocoder.yudao.module.training.convert.store;
 
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.module.training.dal.dataobject.store.StoreDO;
-import cn.iocoder.yudao.module.training.vo.store.StoreCreateReqVO;
-import cn.iocoder.yudao.module.training.vo.store.StoreExcelVO;
-import cn.iocoder.yudao.module.training.vo.store.StoreRespVO;
-import cn.iocoder.yudao.module.training.vo.store.StoreUpdateReqVO;
+import cn.iocoder.yudao.module.training.vo.store.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

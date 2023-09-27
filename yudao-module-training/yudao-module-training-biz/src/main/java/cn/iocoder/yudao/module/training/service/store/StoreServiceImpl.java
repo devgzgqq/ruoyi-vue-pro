@@ -1,6 +1,5 @@
 package cn.iocoder.yudao.module.training.service.store;
 
-import cn.hutool.core.collection.CollectionUtil;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.common.util.collection.CollectionUtils;
 import cn.iocoder.yudao.module.training.convert.store.StoreConvert;
